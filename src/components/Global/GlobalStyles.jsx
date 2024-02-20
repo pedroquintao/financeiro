@@ -7,7 +7,7 @@ const styles = theme => {
         },
         body: {
             margin: 0,
-            backgroundColor: theme.colors.neutral.a
+            backgroundColor: theme.colors.neutral.b
         }
     }
 }

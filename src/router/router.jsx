@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import BaseLayout from "../pages/BaseLayout";
-import TablesBaseLayout from "../pages/TablesBaseLayout";
+import { MainPage } from "../pages/MainPage";
+import NewControlForm from "../pages/NewControlForm";
+import NewControl from "../pages/NewControl";
 
 export const router = createBrowserRouter([
     {
@@ -8,9 +10,17 @@ export const router = createBrowserRouter([
         element: <BaseLayout />,
         children: [
             {
-                path: 'tables',
-                element: <TablesBaseLayout />
-            }
-        ]
-    }
-])
+                path: 'main',
+                element: <MainPage />,
+            },
+            {
+                path: 'new-control-form',
+                element: <NewControlForm />
+            },
+            {
+                path: 'new-control',
+                element: <NewControl />
+            }]
+        }
+    ]
+)
