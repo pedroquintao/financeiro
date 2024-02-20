@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@emotion/react'
 
 const theme = {
-    colours: {
+    colors: {
         black:'#000',
         white: '#FFF',
 
@@ -15,6 +15,7 @@ const theme = {
             b: '#FFEEF4'
         }
     },
+    
     fontFamily: "'Montserrat', 'sans-serif'"
 }
 

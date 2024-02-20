@@ -6,7 +6,8 @@ const styles = theme => {
             fontFamily: theme.fontFamily
         },
         body: {
-            margin: 0
+            margin: 0,
+            backgroundColor: theme.colors.neutral.a
         }
     }
 }

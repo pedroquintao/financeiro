@@ -3,7 +3,7 @@ import moneyIcon from './money.png'
 import styled from '@emotion/styled'
 
 const HeaderDiv = styled.header`
-    background-color: ${prop => prop.theme.colours.dark.a};
+    background-color: ${prop => prop.theme.colors.dark.a};
 `
 
 const StylizedMoneyIcon = styled.img`
