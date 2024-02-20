@@ -14,7 +14,8 @@ const theme = {
             a: '#E4E4D0',
             b: '#FFEEF4'
         }
-    }
+    },
+    fontFamily: "'Montserrat', 'sans-serif'"
 }
 
 export const Theme = ({ children }) => {
