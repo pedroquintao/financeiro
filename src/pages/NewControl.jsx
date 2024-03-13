@@ -1,5 +1,12 @@
+import { Card } from "../components/Card/Card"
+import Table from "../components/Table/Table"
+
 const NewControl = () => {
-    return <h1>Novo Controle</h1>
+    return (
+    <Card>
+        <Table />
+    </Card>
+    )
 }
 
 export default NewControl

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 
-const DivEstilizada = styled.div`
+const StyledDiv = styled.div`
     padding: ${props => props.theme.spacing.l};
     border-radius: ${props => props.theme.spacing.s};
     background-color: ${props => props.theme.colors.neutral.a};
@@ -11,8 +11,8 @@ const DivEstilizada = styled.div`
 
 export const Card = ({ children }) => {
     return (
-        <DivEstilizada>
+        <StyledDiv>
             { children }
-        </DivEstilizada>
+        </StyledDiv>
     )
 }
