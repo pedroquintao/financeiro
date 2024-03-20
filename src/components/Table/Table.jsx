@@ -5,8 +5,8 @@ const StyledTable = styled.table`
     background-color: white;
     width: 100%;
     border: 2px solid ${props => props.theme.colors.dark.b};
-    border-radius: ${props => props.theme.spacing.s};
-    border-left: 12px solid green;
+    border-radius: ${props => props.theme.spacing.xs};
+    /* border-left: 12px solid green; */
 
 
 `
@@ -18,11 +18,11 @@ const StyledTd = styled.td`
     border-top: 2px solid ${props => props.theme.colors.neutral.a};
     text-align: center;
 `
-const Table = () => {
-    const tableOn = false;
+const Table = ({ backgroundColor }) => {
+
     return (
         <>
-            {tableOn && <StyledTable>
+            <StyledTable style={{backgroundColor: backgroundColor}}>
                 <StyledTr>
                     <th>Descrição</th>
                     <th>Valor</th>
@@ -38,7 +38,7 @@ const Table = () => {
                     <StyledTd>R$4000,00</StyledTd>
                     <StyledTd><input type="checkbox"></input></StyledTd>
                 </StyledTr>
-            </StyledTable>}
+            </StyledTable>
         </>
     )
 }
