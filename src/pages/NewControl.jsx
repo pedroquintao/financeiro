@@ -4,6 +4,7 @@ import Table from "../components/Table/Table"
 import ResumeCard from "../components/ResumeCard/ResumeCard"
 import { Date } from "../components/Date/Date"
 import { Balance } from "../components/Balance/Balance"
+import { InputsTest } from "../components/InputsTest/InputsTest"
 
 const NewControl = () => {
     return (
@@ -23,6 +24,9 @@ const NewControl = () => {
                 </Col>
                 <Col>
                     <ResumeCard type={'expense'}/>
+                </Col>
+                <Col>
+                    <InputsTest />
                 </Col>
             </Row>
         </Card>

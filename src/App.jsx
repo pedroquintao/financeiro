@@ -2,13 +2,16 @@ import { RouterProvider } from 'react-router'
 import { GlobalStyles } from './components/Global/GlobalStyles'
 import { Theme } from './components/Theme/Theme'
 import { router } from './router/router'
+import { UserContext } from './context/UserContext'
 
 function App() {
 
   return (
     <Theme>
-      <GlobalStyles />
-      <RouterProvider router={router} />
+      {/* <UserContext> */}
+        <GlobalStyles />
+        <RouterProvider router={router} />
+      {/* </UserContext> */}
     </Theme>
   )
 }
