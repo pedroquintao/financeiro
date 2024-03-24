@@ -27,18 +27,22 @@ const Table = ({ backgroundColor }) => {
     return (
         <>
             <StyledTable style={{backgroundColor: backgroundColor}}>
-                <StyledTr>
-                    <th>Descrição</th>
-                    <th>Valor</th>
-                    <th>Estado</th>
-                </StyledTr>
-                {table.map((row) => (
+                <thead>
                     <StyledTr>
-                        <StyledTd>{row.name}</StyledTd>
-                        <StyledTd>{row.value}</StyledTd>
-                        <StyledTd><input type="checkbox"></input></StyledTd>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Estado</th>
                     </StyledTr>
-                ))}
+                </thead>
+                <tbody>
+                    {table.map((row, index) => (
+                        <StyledTr key={index}>
+                            <StyledTd>{row.name}</StyledTd>
+                            <StyledTd>{row.value}</StyledTd>
+                            <StyledTd><input type="checkbox"></input></StyledTd>
+                        </StyledTr>
+                    ))}
+                </tbody>
             </StyledTable>
         </>
     )
