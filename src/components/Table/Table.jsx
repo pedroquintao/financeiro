@@ -32,23 +32,13 @@ const Table = ({ backgroundColor }) => {
                     <th>Valor</th>
                     <th>Estado</th>
                 </StyledTr>
-                {table.map(((row) => {
+                {table.map((row) => (
                     <StyledTr>
                         <StyledTd>{row.name}</StyledTd>
                         <StyledTd>{row.value}</StyledTd>
                         <StyledTd><input type="checkbox"></input></StyledTd>
                     </StyledTr>
-                }))}
-                {/* <StyledTr>
-                    <StyledTd>Salário</StyledTd>
-                    <StyledTd>R$4000,00</StyledTd>
-                    <StyledTd><input type="checkbox"></input></StyledTd>
-                </StyledTr>
-                <StyledTr>
-                    <StyledTd>Salário</StyledTd>
-                    <StyledTd>R$4000,00</StyledTd>
-                    <StyledTd><input type="checkbox"></input></StyledTd>
-                </StyledTr> */}
+                ))}
             </StyledTable>
         </>
     )
