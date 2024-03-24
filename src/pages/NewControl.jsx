@@ -25,9 +25,9 @@ const NewControl = () => {
                 <Col>
                     <ResumeCard type={'expense'}/>
                 </Col>
-                <Col>
+                <Row>
                     <InputsTest />
-                </Col>
+                </Row>
             </Row>
         </Card>
     </Container>

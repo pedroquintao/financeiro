@@ -1,54 +1,34 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 
-export const UserContext = createContext({});
+export const UserContext = createContext(null);
 
 export const UserContextProvider = ({ children }) => {
-
-    const [name, setName] = useState()
-    const [amount, setAmount] = useState()
-    const [status, setStatus] = useState()
     
-    const [tableItems, setTableItems] = useState({})
+    const [itemName, seItemName] = useState()
+    const [itemValue, setItemValue] = useState()
+    const [itemStatus, setItemStatus] = useState()
+    const [table, setTable] = useState([])
 
-    const addTableItem = (name, amount, status) => {
+    const addItem = (name, value, status) => {setTable([...table, {name, value, status}])}
 
-        const newTableItem = {
-            // id: id,
-            name: name,
-            amount: amount,
-            status: status
-        }
+    // const setPerfil = (perfil) => {setUsuario(estadoAnterior => {return {...estadoAnterior,perfil}})}
 
-        console.table()
+    useEffect(() => console.log('table: ', table), [table])
 
-        setTableItems({...tableItems, newTableItem})
+    const context = {
+                table,
+                itemName, 
+                itemValue,
+                itemStatus,
+                setTable,
+                seItemName,
+                setItemValue,
+                setItemStatus,
+                addItem
+            }
 
-        console.table(tableItems)
-    }
-
-    // const context = {
-    //     name,
-    //     amount,
-    //     status,
-    //     setName,
-    //     setAmount,
-    //     setStatus,
-    //     tableItems,
-    //     setTableItems,
-    //     addTableItem
-    // }
-    
     return (
-        <UserContext.Provider value={{ 
-            name,
-            amount,
-            status,
-            setName,
-            setAmount,
-            setStatus,
-            tableItems,
-            setTableItems,
-            addTableItem }}>
+        <UserContext.Provider value={context}>
             { children }
         </UserContext.Provider>
     )

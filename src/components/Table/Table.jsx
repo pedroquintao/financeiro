@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 
 const StyledTable = styled.table`
@@ -20,6 +22,8 @@ const StyledTd = styled.td`
 `
 const Table = ({ backgroundColor }) => {
 
+    const { table, setTable } = useContext(UserContext)
+
     return (
         <>
             <StyledTable style={{backgroundColor: backgroundColor}}>
@@ -28,7 +32,14 @@ const Table = ({ backgroundColor }) => {
                     <th>Valor</th>
                     <th>Estado</th>
                 </StyledTr>
-                <StyledTr>
+                {table.map(((row) => {
+                    <StyledTr>
+                        <StyledTd>{row.name}</StyledTd>
+                        <StyledTd>{row.value}</StyledTd>
+                        <StyledTd><input type="checkbox"></input></StyledTd>
+                    </StyledTr>
+                }))}
+                {/* <StyledTr>
                     <StyledTd>Salário</StyledTd>
                     <StyledTd>R$4000,00</StyledTd>
                     <StyledTd><input type="checkbox"></input></StyledTd>
@@ -37,7 +48,7 @@ const Table = ({ backgroundColor }) => {
                     <StyledTd>Salário</StyledTd>
                     <StyledTd>R$4000,00</StyledTd>
                     <StyledTd><input type="checkbox"></input></StyledTd>
-                </StyledTr>
+                </StyledTr> */}
             </StyledTable>
         </>
     )

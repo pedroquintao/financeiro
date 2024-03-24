@@ -1,25 +1,23 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { UserContext } from "../../context/UserContext";
 
 export const InputsTest = () => {
 
-    const {
-        name,
-        amount,
-        status,
-        setName,
-        setAmount,
-        setStatus,
-        tableItems,
-        setTableItems,
-        addTableItem
-    } = useContext(UserContext)
+    const { itemName, itemValue, itemStatus, seItemName, setItemValue, setItemStatus, addItem } = useContext(UserContext)
     
     return (
-        <form onSubmit={e => {e.preventDefault(); console.table({name, amount, status})}}>
-            <input placeholder="Name" onChange={e => {setName(e.target.value)}} />
-            <input placeholder="Amount" onChange={e => {setAmount(e.target.value)}} type="number"/>
-            <input placeholder="status" onChange={e => {setStatus(e.target.value)}} type="checkbox"/>
+        <form onSubmit={e => {e.preventDefault(); addItem(itemName, itemValue, itemStatus)}}>
+            <input  placeholder="Name" 
+                    onChange={e => {seItemName(e.target.value)}} 
+                    />
+            <input  placeholder="Value" 
+                    type="number"
+                    onChange={e => {setItemValue(e.target.value)}} 
+            />
+            <input  placeholder="Status" 
+                    type="checkbox"
+                    onChange={e => {setItemStatus(e.target.value)}} 
+            />
             <button>Ok</button>
         </form>
     )
