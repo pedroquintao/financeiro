@@ -17,6 +17,9 @@ const NewControl = () => {
                 <Row justify="center" align="start">
                     <Balance />
                 </Row>
+            <Row justify="center">
+                <InputsTest />
+            </Row>
             </Card>
             <Row>
                 <Col>
@@ -25,9 +28,6 @@ const NewControl = () => {
                 <Col>
                     <ResumeCard cardType={'expense'}/>
                 </Col>
-                <Row>
-                    <InputsTest />
-                </Row>
             </Row>
         </Card>
     </Container>
