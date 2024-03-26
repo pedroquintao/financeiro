@@ -1,9 +1,9 @@
 import { useContext } from "react"
-import { UserContext } from "../../context/UserContext";
+import { TableContext } from "../../context/TableContext";
 
 export const InputsTest = () => {
 
-    const { itemName, itemValue, itemStatus, seItemName, setItemValue, setItemStatus, addItem } = useContext(UserContext)
+    const { itemName, itemValue, itemStatus, seItemName, setItemValue, setItemStatus, addItem } = useContext(TableContext)
     
     return (
         <form onSubmit={e => {e.preventDefault(); addItem(itemName, itemValue, itemStatus)}}>

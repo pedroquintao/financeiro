@@ -1,26 +1,30 @@
 import { createContext, useEffect, useState } from 'react'
 
-export const UserContext = createContext(null);
+export const TableContext = createContext(null);
 
-export const UserContextProvider = ({ children }) => {
+export const TableContextProvider = ({ children }) => {
     
+    const [table, setTable] = useState([])
+    const [tableVisibility, setTableVisibility] = useState(false)
     const [itemName, seItemName] = useState()
     const [itemValue, setItemValue] = useState()
     const [itemStatus, setItemStatus] = useState()
-    const [table, setTable] = useState([])
 
     const addItem = (name, value, status) => {setTable([...table, {name, value, status}])}
-
+    const toggleTableVIsibility = () => {setTableVisibility(!tableVisibility)}
     // const setPerfil = (perfil) => {setUsuario(estadoAnterior => {return {...estadoAnterior,perfil}})}
 
     useEffect(() => console.log('table: ', table), [table])
 
     const context = {
                 table,
+                tableVisibility,
                 itemName, 
                 itemValue,
                 itemStatus,
                 setTable,
+                setTableVisibility,
+                toggleTableVIsibility,
                 seItemName,
                 setItemValue,
                 setItemStatus,
@@ -28,8 +32,8 @@ export const UserContextProvider = ({ children }) => {
             }
 
     return (
-        <UserContext.Provider value={context}>
+        <TableContext.Provider value={context}>
             { children }
-        </UserContext.Provider>
+        </TableContext.Provider>
     )
 }

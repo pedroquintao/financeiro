@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
+import { TableContext } from "../../context/TableContext";
 
 
 const StyledTable = styled.table`
@@ -22,11 +22,12 @@ const StyledTd = styled.td`
 `
 const Table = ({ backgroundColor }) => {
 
-    const { table, setTable } = useContext(UserContext)
+    const { table, setTable } = useContext(TableContext)
 
     return (
         <>
-            <StyledTable style={{backgroundColor: backgroundColor}}>
+            <StyledTable style={{backgroundColor: '#FFF',
+                                 border: '1px solid black'}}>
                 <thead>
                     <StyledTr>
                         <th>Descrição</th>

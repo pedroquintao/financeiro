@@ -20,10 +20,10 @@ const NewControl = () => {
             </Card>
             <Row>
                 <Col>
-                    <ResumeCard type={'green'}/>
+                    <ResumeCard cardType={'revenue'}/>
                 </Col>
                 <Col>
-                    <ResumeCard type={'expense'}/>
+                    <ResumeCard cardType={'expense'}/>
                 </Col>
                 <Row>
                     <InputsTest />
