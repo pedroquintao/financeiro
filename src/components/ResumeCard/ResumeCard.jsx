@@ -1,32 +1,19 @@
 import styled from "@emotion/styled"
 import { useContext } from "react"
-import Table from "../Table/Table"
 import { TableContext } from "../../context/TableContext"
-
-const colorHandler = (handlerType) => {
-    switch(handlerType) {
-        case 'border':
-        case 'title':
-            return props => props.cardType === 'revenue' ? 'green' 
-                  : props.cardType === 'expense' ? '#b44d4d' 
-                  : 'black'
-        case 'background':
-            return props => props.cardType === 'revenue' ? 'white' 
-                  : props.cardType === 'expense' ? '#fff3f3' 
-                  : 'black'
-        default:
-            console.log('Wrong input!')
-    }
-}
 
 const StyledCard = styled.div`
     display: flex;
     justify-content: space-between;
-    background-color: ${colorHandler('background')};
-    border: 2px solid ${colorHandler('border')};
-    border-left: 12px solid ${colorHandler('border')};;
+    background-color: ${props => props.colorHandler('background')};
+    border: 2px solid ${props => props.colorHandler('border')};
+    border-left: 12px solid ${props => props.colorHandler('border')};;
     border-radius: ${props => props.theme.spacing.s};
     padding: 0 ${props => props.theme.spacing.s};
+
+    &:hover {
+        background-color: ${props => props.colorHandler('hover')}
+    }
 `
 
 const StyledTitle = styled.div`
@@ -34,27 +21,29 @@ const StyledTitle = styled.div`
     gap: ${props => props.theme.spacing.s};
     align-items: center;
     flex-grow: 1;
-    color: ${colorHandler('title')};
+    color: ${props => props.colorHandler('title')};
 `
 
-const ResumeCard = ({ cardType }) => {
+const ResumeCard = ({ resourcesType }) => {
 
-    const { tableVisibility, toggleTableVIsibility } = useContext(TableContext)
+    const { colorHandler } = useContext(TableContext)
 
     return (
         <>
-            <StyledCard onClick={() => toggleTableVIsibility()} cardType={cardType}>
-                <StyledTitle cardType={cardType}>
+            <StyledCard resourcesType={resourcesType}
+                        colorHandler={colorHandler}>
+                <StyledTitle resourcesType={resourcesType}
+                             colorHandler={colorHandler}>
                     <h1>$</h1>
                     <div>
                         <h3>
-                            { cardType === 'revenue' ? 'Receitas' 
-                            : cardType === 'expense' ? 'Despesas'
+                            { resourcesType === 'revenue' ? 'Receitas' 
+                            : resourcesType === 'expense' ? 'Despesas'
                             : 'ERROR!'}
                         </h3>
                         <p>
-                            { cardType === 'revenue' ? 'A receber' 
-                            : cardType === 'expense' ? 'A pagar'
+                            { resourcesType === 'revenue' ? 'A receber' 
+                            : resourcesType === 'expense' ? 'A pagar'
                             : 'ERROR!'}
                         </p>
                     </div>
@@ -62,18 +51,17 @@ const ResumeCard = ({ cardType }) => {
 
                 <div>
                     <h3>
-                        { cardType === 'revenue' ? '4000,00' 
-                        : cardType === 'expense' ? '2000,00'
+                        { resourcesType === 'revenue' ? '4000,00' 
+                        : resourcesType === 'expense' ? '2000,00'
                         : 'ERROR!'}
                     </h3> 
                     <p>
-                        { cardType === 'revenue' ? '500,00' 
-                        : cardType === 'expense' ? '100,00'
+                        { resourcesType === 'revenue' ? '500,00' 
+                        : resourcesType === 'expense' ? '100,00'
                         : 'ERROR!'}
                     </p>
                 </div>
             </StyledCard>
-            {tableVisibility && <Table />}
         </>
     )
 }

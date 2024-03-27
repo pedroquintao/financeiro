@@ -3,45 +3,53 @@ import { useContext } from "react";
 import { TableContext } from "../../context/TableContext";
 
 
+
 const StyledTable = styled.table`
-    background-color: white;
+    background-color: ${props => props.colorHandler('background')};
     width: 100%;
-    border: 2px solid ${props => props.theme.colors.dark.b};
-    border-radius: ${props => props.theme.spacing.xs};
-    /* border-left: 12px solid green; */
-
-
+    border: 2px solid ${props => props.colorHandler('border')};
+    border-radius: 0 0 ${props => props.theme.spacing.xs} ${props => props.theme.spacing.xs};
 `
-const StyledTr = styled.tr`
-    /* background-color: red; */
+const StyledTh = styled.th`
+    color: red;
 `
 
 const StyledTd = styled.td`
-    border-top: 2px solid ${props => props.theme.colors.neutral.a};
+    border-top: 2px solid ${props => props.colorHandler('border')};
     text-align: center;
 `
-const Table = ({ backgroundColor }) => {
+const Table = ({ resourcesType }) => {
 
-    const { table, setTable } = useContext(TableContext)
+    const { table, setTable, colorHandler } = useContext(TableContext)
 
     return (
         <>
-            <StyledTable style={{backgroundColor: '#FFF',
-                                 border: '1px solid black'}}>
+            <StyledTable resourcesType={resourcesType} 
+                         colorHandler={colorHandler}>
                 <thead>
-                    <StyledTr>
-                        <th>Descrição</th>
-                        <th>Valor</th>
-                        <th>Estado</th>
-                    </StyledTr>
+                    <tr resourcesType={resourcesType} 
+                        colorHandler={colorHandler}>
+                        <StyledTh>Descrição</StyledTh>
+                        <StyledTh>Valor</StyledTh>
+                        <StyledTh>Estado</StyledTh>
+                    </tr>
                 </thead>
-                <tbody>
+                <tbody> 
                     {table.map((row, index) => (
-                        <StyledTr key={index}>
-                            <StyledTd>{row.name}</StyledTd>
-                            <StyledTd>{row.value}</StyledTd>
-                            <StyledTd><input type="checkbox"></input></StyledTd>
-                        </StyledTr>
+                        <tr key={index}>
+                            <StyledTd resourcesType={resourcesType} 
+                                      colorHandler={colorHandler}>
+                                {row.name}
+                            </StyledTd>
+                            <StyledTd resourcesType={resourcesType} 
+                                      colorHandler={colorHandler}>
+                                {row.value}
+                            </StyledTd>
+                            <StyledTd resourcesType={resourcesType} 
+                                      colorHandler={colorHandler}>
+                                <input type="checkbox"></input>
+                            </StyledTd>
+                        </tr>
                     ))}
                 </tbody>
             </StyledTable>

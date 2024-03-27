@@ -12,6 +12,25 @@ export const TableContextProvider = ({ children }) => {
 
     const addItem = (name, value, status) => {setTable([...table, {name, value, status}])}
     const toggleTableVIsibility = () => {setTableVisibility(!tableVisibility)}
+    const colorHandler = (handlerType) => {
+        switch(handlerType) {
+            case 'border':
+            case 'title':
+                return props => props.resourcesType === 'revenue' ? 'green' 
+                      : props.resourcesType === 'expense' ? '#b44d4d' 
+                      : 'black'
+            case 'background':
+                return props => props.resourcesType === 'revenue' ? 'white' 
+                      : props.resourcesType === 'expense' ? '#fff3f3' 
+                      : 'black'
+            case 'hover':
+                return props => props.resourcesType === 'revenue' ? '#f1fff1' 
+                      : props.resourcesType === 'expense' ? '#ffeeee' 
+                      : 'black'
+            default:
+                console.log('Wrong input!')
+        }
+    }
     // const setPerfil = (perfil) => {setUsuario(estadoAnterior => {return {...estadoAnterior,perfil}})}
 
     useEffect(() => console.log('table: ', table), [table])
@@ -28,7 +47,8 @@ export const TableContextProvider = ({ children }) => {
                 seItemName,
                 setItemValue,
                 setItemStatus,
-                addItem
+                addItem,
+                colorHandler
             }
 
     return (

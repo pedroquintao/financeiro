@@ -5,8 +5,13 @@ import ResumeCard from "../components/ResumeCard/ResumeCard"
 import { Date } from "../components/Date/Date"
 import { Balance } from "../components/Balance/Balance"
 import { InputsTest } from "../components/InputsTest/InputsTest"
+import { TableContext } from "../context/TableContext"
+import { useContext } from "react"
 
 const NewControl = () => {
+
+    const { tableVisibility, toggleTableVIsibility } = useContext(TableContext)
+
     return (
     <Container>
         <Card>
@@ -23,10 +28,12 @@ const NewControl = () => {
             </Card>
             <Row>
                 <Col>
-                    <ResumeCard cardType={'revenue'}/>
+                    <ResumeCard resourcesType={'revenue'}/>
+                    <Table resourcesType={'revenue'}/>
                 </Col>
                 <Col>
-                    <ResumeCard cardType={'expense'}/>
+                    <ResumeCard resourcesType={'expense'}/>
+                    <Table resourcesType={'expense'}/>
                 </Col>
             </Row>
         </Card>
