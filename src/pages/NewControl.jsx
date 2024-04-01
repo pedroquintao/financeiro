@@ -7,6 +7,7 @@ import { Balance } from "../components/Balance/Balance"
 import { InputsTest } from "../components/InputsTest/InputsTest"
 import { TableContext } from "../context/TableContext"
 import { useContext } from "react"
+import Modal from "../components/Modal/Modal"
 
 const NewControl = () => {
 
@@ -22,9 +23,11 @@ const NewControl = () => {
                 <Row justify="center" align="start">
                     <Balance />
                 </Row>
-            <Row justify="center">
-                <InputsTest />
-            </Row>
+                <Row justify="center">
+                    <Modal backgroundColor="#F00">
+                        <InputsTest />
+                    </Modal>
+                </Row>
             </Card>
             <Row>
                 <Col>
