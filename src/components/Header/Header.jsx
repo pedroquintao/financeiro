@@ -24,7 +24,7 @@ export const Header = () => {
                         </Row>
                     </Col>
                     <Col lg={6} md={6} sm={6}>
-                        <h1>FinApp!</h1>
+                        <h1>Financeiro</h1>
                     </Col>
                     <Col style={{textAlign: 'right'}} lg={3} md={3} sm={3}>
                         <p>Login</p>

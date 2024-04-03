@@ -15,7 +15,7 @@ const NewControl = () => {
 
     return (
     <Container>
-        <Card>
+        <Card backgroundColor={ props => props.theme.colors.neutral.a }>
             <Card>
                 <Row justify="center">
                     <Date />

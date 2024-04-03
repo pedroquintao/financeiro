@@ -23,7 +23,7 @@ export const Footer = () => {
                     </Row>
                 </Col>
                 <Col lg={6} md={6} sm={6}>
-                    <h1>FinApp!</h1>
+                    <h1>Financeiro</h1>
                     <p>Desenvolvido por Pedro Quintão, projeto de estudo fictício sem fins comerciais</p>
                 </Col>
 
