@@ -23,11 +23,7 @@ const NewControl = () => {
                 <Row justify="center" align="start">
                     <Balance />
                 </Row>
-                <Row justify="center">
-                    <Modal backgroundColor="#F00">
-                        <InputsTest />
-                    </Modal>
-                </Row>
+                
             </Card>
             <Row>
                 <Col>
@@ -40,6 +36,9 @@ const NewControl = () => {
                 </Col>
             </Row>
         </Card>
+        <Modal backgroundColor="#F00">
+            <InputsTest />
+        </Modal>
     </Container>
     )
 }
