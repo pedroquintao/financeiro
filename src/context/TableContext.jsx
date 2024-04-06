@@ -11,7 +11,8 @@ export const TableContextProvider = ({ children }) => {
     const [itemStatus, setItemStatus] = useState()
 
     const addItem = (name, value, status) => {setTable([...table, {name, value, status}])}
-    const toggleTableVIsibility = () => {setTableVisibility(!tableVisibility)}
+    const toggleTableVisibility = () => {setTableVisibility(!tableVisibility); console.log('tableVisibility= ', tableVisibility)}
+    
     const colorHandler = (handlerType) => {
         switch(handlerType) {
             case 'border':
@@ -43,7 +44,7 @@ export const TableContextProvider = ({ children }) => {
                 itemStatus,
                 setTable,
                 setTableVisibility,
-                toggleTableVIsibility,
+                toggleTableVisibility,
                 seItemName,
                 setItemValue,
                 setItemStatus,

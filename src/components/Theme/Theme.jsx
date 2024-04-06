@@ -8,11 +8,13 @@ const theme = {
         dark: {
             a: '#94A684',
             b: '#AEC3AE',
+            c: '#bdbdbd'
         },
         
         neutral: {
             a: '#E4E4D0',
-            b: '#FFEEF4'
+            b: '#FFEEF4',
+            c: '#FFFBEE'
         }
     },
 

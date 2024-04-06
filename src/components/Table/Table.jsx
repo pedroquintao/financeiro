@@ -9,30 +9,31 @@ const StyledTable = styled.table`
     width: 100%;
     border: 2px solid ${props => props.colorHandler('border')};
     border-radius: 0 0 ${props => props.theme.spacing.xs} ${props => props.theme.spacing.xs};
-`
-const StyledTh = styled.th`
-    color: red;
+    /* border-left: 12px solid ${props => props.colorHandler('border')}; */
 `
 
+const StyledTr = styled.tr`
+    color: ${props => props.colorHandler('border')};
+`
 const StyledTd = styled.td`
     border-top: 2px solid ${props => props.colorHandler('border')};
     text-align: center;
 `
 const Table = ({ resourcesType }) => {
 
-    const { table, setTable, colorHandler } = useContext(TableContext)
+    const { table, setTable, colorHandler, tableVisibility } = useContext(TableContext)
 
     return (
         <>
             <StyledTable resourcesType={resourcesType} 
                          colorHandler={colorHandler}>
                 <thead>
-                    <tr resourcesType={resourcesType} 
+                    <StyledTr resourcesType={resourcesType} 
                         colorHandler={colorHandler}>
-                        <StyledTh>Descrição</StyledTh>
-                        <StyledTh>Valor</StyledTh>
-                        <StyledTh>Estado</StyledTh>
-                    </tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Estado</th>
+                    </StyledTr>
                 </thead>
                 <tbody> 
                     {table.map((row, index) => (

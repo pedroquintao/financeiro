@@ -8,10 +8,12 @@ import { InputsTest } from "../components/InputsTest/InputsTest"
 import { TableContext } from "../context/TableContext"
 import { useContext } from "react"
 import Modal from "../components/Modal/Modal"
+import { ModalContext } from "../context/ModalContext"
 
 const NewControl = () => {
 
-    const { tableVisibility, toggleTableVIsibility } = useContext(TableContext)
+    const { tableVisibility, toggleTableVisibility} = useContext(TableContext)
+    const { modalVisibility, setModalVisibility, toggleModalVisibility } = useContext(ModalContext)
 
     return (
     <Container>
@@ -24,21 +26,28 @@ const NewControl = () => {
                     <Balance />
                 </Row>
                 
-            </Card>
-            <Row>
-                <Col>
-                    <ResumeCard resourcesType={'revenue'}/>
-                    <Table resourcesType={'revenue'}/>
-                </Col>
-                <Col>
-                    <ResumeCard resourcesType={'expense'}/>
-                    <Table resourcesType={'expense'}/>
-                </Col>
-            </Row>
         </Card>
-        <Modal backgroundColor="#F00">
-            <InputsTest />
-        </Modal>
+        <Row>
+            <Col>
+                <ResumeCard resourcesType={'revenue'}/>
+                {tableVisibility && 
+                    <Table resourcesType={'revenue'}/>
+                }
+            </Col>
+            <Col>
+                <ResumeCard resourcesType={'expense'}/>
+                {tableVisibility && 
+                    <Table resourcesType={'expense'}/>
+                }
+            </Col>
+        </Row>
+        </Card>
+        {modalVisibility && 
+            <Modal backgroundColor={props => props.theme.colors.neutral.c}>
+                <InputsTest />
+            </Modal>
+            }
+        <button onClick={() => toggleModalVisibility()}>TESTE</button>
     </Container>
     )
 }

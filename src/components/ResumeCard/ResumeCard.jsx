@@ -8,7 +8,10 @@ const StyledCard = styled.div`
     background-color: ${props => props.colorHandler('background')};
     border: 2px solid ${props => props.colorHandler('border')};
     border-left: 12px solid ${props => props.colorHandler('border')};;
-    border-radius: ${props => props.theme.spacing.s};
+    border-radius: ${props => props.tableVisibility ? 
+                  `${props.theme.spacing.s} ${props.theme.spacing.s} 0 0` : 
+                     props.theme.spacing.s
+                  };
     padding: 0 ${props => props.theme.spacing.s};
 
     &:hover {
@@ -26,12 +29,15 @@ const StyledTitle = styled.div`
 
 const ResumeCard = ({ resourcesType }) => {
 
-    const { colorHandler } = useContext(TableContext)
+    const { colorHandler, tableVisibility, toggleTableVisibility } = useContext(TableContext)
 
     return (
         <>
-            <StyledCard resourcesType={resourcesType}
-                        colorHandler={colorHandler}>
+            <StyledCard onClick={() => toggleTableVisibility()}
+                        resourcesType={resourcesType}
+                        colorHandler={colorHandler}
+                        tableVisibility={tableVisibility}>
+                        
                 <StyledTitle resourcesType={resourcesType}
                              colorHandler={colorHandler}>
                     <h1>$</h1>
