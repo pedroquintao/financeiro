@@ -16,7 +16,8 @@ const StyledPrimaryButton = styled.div`
 
     &:hover {
         background-color: ${props => props.colorHandler('hover')};
-        border-color: ${props => props.colorHandler('hover')}
+        border-color: ${props => props.colorHandler('hover')};
+        cursor: pointer;
     }
 `
 
@@ -35,6 +36,7 @@ const StyledSecondaryButton = styled.div`
     &:hover {
         color: ${props => props.colorHandler('hover')};
         border-color: ${props => props.colorHandler('hover')};
+        cursor: pointer;
     }
 `
 
