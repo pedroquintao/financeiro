@@ -9,6 +9,7 @@ import { TableContext } from "../context/TableContext"
 import { useContext } from "react"
 import Modal from "../components/Modal/Modal"
 import { ModalContext } from "../context/ModalContext"
+import { Button } from "../components/Button/Button"
 
 const NewControl = () => {
 
@@ -47,7 +48,9 @@ const NewControl = () => {
                 <InputsTest />
             </Modal>
             }
-        <button onClick={() => toggleModalVisibility()}>TESTE</button>
+        <Button onClick={() => toggleModalVisibility()}
+                buttonType='primary'
+                resourcesType='revenue'>TESTE</Button>
     </Container>
     )
 }

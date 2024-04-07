@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { useContext } from "react";
 import { TableContext } from "../../context/TableContext";
+import { Button } from "../Button/Button";
+import { ColorHandlerContext } from "../../context/ColorHandlerContext";
 
 
 
@@ -8,10 +10,16 @@ const StyledTable = styled.table`
     background-color: ${props => props.colorHandler('background')};
     width: 100%;
     border: 2px solid ${props => props.colorHandler('border')};
+    border-top: 0;
     border-radius: 0 0 ${props => props.theme.spacing.xs} ${props => props.theme.spacing.xs};
-    /* border-left: 12px solid ${props => props.colorHandler('border')}; */
 `
-
+const StyledTable2 = styled.table`
+    background-color: ${props => props.colorHandler('background')};
+    width: 100%;
+    border: 2px solid ${props => props.colorHandler('border')};
+    border-top: 0;
+    /* border-radius: 0 0 ${props => props.theme.spacing.xs} ${props => props.theme.spacing.xs}; */
+`
 const StyledTr = styled.tr`
     color: ${props => props.colorHandler('border')};
 `
@@ -21,10 +29,22 @@ const StyledTd = styled.td`
 `
 const Table = ({ resourcesType }) => {
 
-    const { table, setTable, colorHandler, tableVisibility } = useContext(TableContext)
+    const { table } = useContext(TableContext)
+    const { colorHandler } = useContext(ColorHandlerContext)
 
     return (
         <>
+            <StyledTable2 resourcesType={resourcesType} 
+                         colorHandler={colorHandler}>
+                <Button buttonType="primary"
+                        resourcesType={resourcesType}>
+                            Adicionar
+                </Button>
+                <Button buttonType="secondary"
+                        resourcesType={resourcesType}>
+                            Adicionar
+                </Button>
+            </StyledTable2>
             <StyledTable resourcesType={resourcesType} 
                          colorHandler={colorHandler}>
                 <thead>
@@ -52,6 +72,23 @@ const Table = ({ resourcesType }) => {
                             </StyledTd>
                         </tr>
                     ))}
+                    <StyledTr resourcesType={resourcesType} 
+                              colorHandler={colorHandler}>
+                        <StyledTd resourcesType={resourcesType} 
+                                  colorHandler={colorHandler}>
+                            <h3>
+                                Total
+                            </h3>
+                        </StyledTd>
+                        <StyledTd resourcesType={resourcesType} 
+                                  colorHandler={colorHandler}></StyledTd>
+                    <StyledTd resourcesType={resourcesType} 
+                              colorHandler={colorHandler}>
+                            <h3>
+                                4000
+                            </h3>
+                        </StyledTd>
+                    </StyledTr>
                 </tbody>
             </StyledTable>
         </>

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import { useContext } from "react"
 import { TableContext } from "../../context/TableContext"
+import { ColorHandlerContext } from "../../context/ColorHandlerContext"
 
 const StyledCard = styled.div`
     display: flex;
@@ -29,7 +30,9 @@ const StyledTitle = styled.div`
 
 const ResumeCard = ({ resourcesType }) => {
 
-    const { colorHandler, tableVisibility, toggleTableVisibility } = useContext(TableContext)
+    const { tableVisibility, toggleTableVisibility } = useContext(TableContext)
+    const { colorHandler } = useContext(ColorHandlerContext)
+
 
     return (
         <>

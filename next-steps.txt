@@ -1,8 +1,2 @@
--Colocar texto no topo com o Mês
-    - Colocar o Saldo abaixo
-
--Resume:
-    -Estilizar o Resume da direita para ser as despesas, trocar cores verdes por vermelhas
-    - Tornar o Resume clicável.
-        - Quando clicar no Resume, mostrar a tabela.
-    - Trocar o $ por um icone, e adicionar um diferente para despesas.
+git fetch origin
+git checkout abertura-individual-das-tabelas
