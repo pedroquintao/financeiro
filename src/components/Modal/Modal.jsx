@@ -59,7 +59,7 @@ const Modal = ( { children, backgroundColor, resourcesType } ) => {
                             </Col>
                             <Row>
                                 <Col>
-                                    <Button onClick={() => toggleModalVisibility()} 
+                                    <Button onClick={(e) => toggleModalVisibility()} 
                                             buttonType='primary' 
                                             resourcesType={modalResourceType}>
                                                 Aceitar

@@ -36,7 +36,7 @@ const ResumeCard = ({ resourcesType }) => {
 
     return (
         <>
-            <StyledCard onClick={() => toggleTableVisibility()}
+            <StyledCard onClick={() => toggleTableVisibility(resourcesType)}
                         resourcesType={resourcesType}
                         colorHandler={colorHandler}
                         tableVisibility={tableVisibility}>

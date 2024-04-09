@@ -19,6 +19,7 @@ const StyledTable2 = styled.table`
     width: 100%;
     border: 2px solid ${props => props.colorHandler('border')};
     border-top: 0;
+    padding: 0.5em 1em;
     /* border-radius: 0 0 ${props => props.theme.spacing.xs} ${props => props.theme.spacing.xs}; */
 `
 const StyledTr = styled.tr`

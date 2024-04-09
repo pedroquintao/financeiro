@@ -21,6 +21,7 @@ export const ModalContextProvider = ( { children } ) => {
         setItemValue('');
         setItemStatus('');
     }
+    
     const context = { modalVisibility, setModalVisibility, toggleModalVisibility, modalResourceType }
 
     return (

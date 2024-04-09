@@ -19,25 +19,24 @@ const NewControl = () => {
     return (
     <Container>
         <Card backgroundColor={ props => props.theme.colors.neutral.a }>
-            <Card>
+            <Card backgroundColor={ props => props.theme.colors.neutral.a }>
                 <Row justify="center">
                     <Date />
                 </Row>
                 <Row justify="center" align="start">
                     <Balance />
                 </Row>
-                
-        </Card>
+            </Card>
         <Row>
             <Col>
                 <ResumeCard resourcesType={'revenue'}/>
-                {tableVisibility && 
+                {tableVisibility.revenueTableVisibility && 
                     <Table resourcesType={'revenue'}/>
                 }
             </Col>
             <Col>
                 <ResumeCard resourcesType={'expense'}/>
-                {tableVisibility && 
+                {tableVisibility.expenseTableVisibility && 
                     <Table resourcesType={'expense'}/>
                 }
             </Col>

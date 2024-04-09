@@ -5,13 +5,24 @@ export const TableContext = createContext(null);
 export const TableContextProvider = ({ children }) => {
     
     const [table, setTable] = useState([])
-    const [tableVisibility, setTableVisibility] = useState(false)
+    const [tableVisibility, setTableVisibility] = useState({revenueTableVisibility: false, expenseTableVisibility: false})
     const [itemName, seItemName] = useState()
     const [itemValue, setItemValue] = useState()
     const [itemStatus, setItemStatus] = useState()
 
     const addItem = (name, value, status) => {setTable([...table, {name, value, status}])}
-    const toggleTableVisibility = () => {setTableVisibility(!tableVisibility); console.log('tableVisibility= ', tableVisibility)}
+    const toggleTableVisibility = (tableType) => {if(tableType === 'revenue') {
+                                                        setTableVisibility(prevState => ({...prevState, revenueTableVisibility: !tableVisibility.revenueTableVisibility}));
+                                                  }
+                                                  if(tableType === 'expense') {
+                                                        setTableVisibility(prevState => ({...prevState, expenseTableVisibility: !tableVisibility.expenseTableVisibility}));
+                                                  }
+                                                  else {
+                                                        console.log('Entrada para tipo de recurso está errada!');
+                                                  }
+                                                }
+                                                    
+
     
     useEffect(() => console.log('table: ', table), [table])
 
