@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { TableContext } from "../../context/TableContext";
 import { Button } from "../Button/Button";
 import { ColorHandlerContext } from "../../context/ColorHandlerContext";
+import { ModalContext } from "../../context/ModalContext";
 
 
 
@@ -31,16 +32,14 @@ const Table = ({ resourcesType }) => {
 
     const { table } = useContext(TableContext)
     const { colorHandler } = useContext(ColorHandlerContext)
+    const { toggleModalVisibility } = useContext(ModalContext)
 
     return (
         <>
             <StyledTable2 resourcesType={resourcesType} 
                          colorHandler={colorHandler}>
-                <Button buttonType="primary"
-                        resourcesType={resourcesType}>
-                            Adicionar
-                </Button>
-                <Button buttonType="secondary"
+                <Button onClick={() => toggleModalVisibility(resourcesType)}
+                        buttonType="primary"
                         resourcesType={resourcesType}>
                             Adicionar
                 </Button>
@@ -49,7 +48,7 @@ const Table = ({ resourcesType }) => {
                          colorHandler={colorHandler}>
                 <thead>
                     <StyledTr resourcesType={resourcesType} 
-                        colorHandler={colorHandler}>
+                              colorHandler={colorHandler}>
                         <th>Descrição</th>
                         <th>Valor</th>
                         <th>Estado</th>

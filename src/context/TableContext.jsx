@@ -13,9 +13,6 @@ export const TableContextProvider = ({ children }) => {
     const addItem = (name, value, status) => {setTable([...table, {name, value, status}])}
     const toggleTableVisibility = () => {setTableVisibility(!tableVisibility); console.log('tableVisibility= ', tableVisibility)}
     
-    
-    // const setPerfil = (perfil) => {setUsuario(estadoAnterior => {return {...estadoAnterior,perfil}})}
-
     useEffect(() => console.log('table: ', table), [table])
 
     const context = {

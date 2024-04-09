@@ -2,7 +2,8 @@ import styled from "@emotion/styled";
 import { useContext } from "react";
 import { ColorHandlerContext } from "../../context/ColorHandlerContext";
 
-const StyledPrimaryButton = styled.div`
+const StyledPrimaryButton = styled.button`
+    all: unset;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,7 +22,8 @@ const StyledPrimaryButton = styled.div`
     }
 `
 
-const StyledSecondaryButton = styled.div`
+const StyledSecondaryButton = styled.button`
+    all: unset;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,20 +42,22 @@ const StyledSecondaryButton = styled.div`
     }
 `
 
-export const Button = ( { children, buttonType = 'secundary', resourcesType } ) => {
+export const Button = ( { children, buttonType = 'secundary', resourcesType, onClick } ) => {
 
     const { colorHandler } = useContext(ColorHandlerContext)
 
     return (
         <>
             {buttonType === 'primary' ?
-                <StyledPrimaryButton buttonType={buttonType}
+                <StyledPrimaryButton onClick={onClick}
+                                     buttonType={buttonType}
                                      resourcesType={resourcesType}
                                      colorHandler={colorHandler}>
                     { children }
                 </StyledPrimaryButton>
             :
-                <StyledSecondaryButton buttonType={buttonType}
+                <StyledSecondaryButton onClick={onClick}
+                                       buttonType={buttonType}
                                        resourcesType={resourcesType}
                                        colorHandler={colorHandler}>
                     { children }

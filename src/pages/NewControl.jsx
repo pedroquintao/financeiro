@@ -48,9 +48,6 @@ const NewControl = () => {
                 <InputsTest />
             </Modal>
             }
-        <Button onClick={() => toggleModalVisibility()}
-                buttonType='primary'
-                resourcesType='revenue'>TESTE</Button>
     </Container>
     )
 }
