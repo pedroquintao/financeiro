@@ -13,7 +13,7 @@ const theme = {
         
         neutral: {
             a: '#E4E4D0',
-            b: '#FFEEF4',
+            b: '#faf8f0',
             c: '#FFFBEE'
         }
     },
