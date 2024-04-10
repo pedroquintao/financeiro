@@ -1,2 +1,14 @@
 git fetch origin
 git checkout no-void-inputs
+
+git fetch origin
+git checkout table-to-tables
+
+git fetch origin
+git checkout work-with-dates
+
+git fetch origin
+git checkout delete-method
+
+git fetch origin
+git checkout update-method
