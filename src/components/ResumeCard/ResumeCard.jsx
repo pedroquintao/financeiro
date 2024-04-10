@@ -9,7 +9,7 @@ const StyledCard = styled.div`
     background-color: ${props => props.colorHandler('background')};
     border: 2px solid ${props => props.colorHandler('border')};
     border-left: 12px solid ${props => props.colorHandler('border')};;
-    border-radius: ${props => props.tableVisibility ? 
+    border-radius: ${props => props.tableVisibility[`${props.resourcesType}TableVisibility`] ? 
                   `${props.theme.spacing.s} ${props.theme.spacing.s} 0 0` : 
                      props.theme.spacing.s
                   };
@@ -36,7 +36,7 @@ const ResumeCard = ({ resourcesType }) => {
 
     return (
         <>
-            <StyledCard onClick={() => toggleTableVisibility(resourcesType)}
+            <StyledCard onClick={() => {toggleTableVisibility(resourcesType)}}
                         resourcesType={resourcesType}
                         colorHandler={colorHandler}
                         tableVisibility={tableVisibility}>

@@ -13,18 +13,23 @@ export const TableContextProvider = ({ children }) => {
     const addItem = (name, value, status) => {setTable([...table, {name, value, status}])}
     const toggleTableVisibility = (tableType) => {if(tableType === 'revenue') {
                                                         setTableVisibility(prevState => ({...prevState, revenueTableVisibility: !tableVisibility.revenueTableVisibility}));
+                                                        return
                                                   }
                                                   if(tableType === 'expense') {
                                                         setTableVisibility(prevState => ({...prevState, expenseTableVisibility: !tableVisibility.expenseTableVisibility}));
+                                                        return
                                                   }
                                                   else {
-                                                        console.log('Entrada para tipo de recurso está errada!');
+                                                        console.log('Entrada para tipo de recurso está errada!', tableType);
+                                                        return
                                                   }
                                                 }
                                                     
 
     
-    useEffect(() => console.log('table: ', table), [table])
+
+    useEffect(() => console.log('tableVisibility: ', tableVisibility), [tableVisibility])
+
 
     const context = {
                 table,

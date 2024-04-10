@@ -47,7 +47,6 @@ const Modal = ( { children, backgroundColor, resourcesType } ) => {
             <Container className="container">
                 <StyledCard className="estilo">
                     <Card className='card' backgroundColor={backgroundColor}>
-                        <form onSubmit={e => {e.preventDefault(); addItem(itemName, itemValue, itemStatus)}}>
                             <Row style={{position: "absolute", top: '1rem', right: '1rem'}} align="center" justify="end"
                                     >
                                 <StyledCloseButton onClick={() => toggleModalVisibility()}>&times;</StyledCloseButton>
@@ -59,7 +58,7 @@ const Modal = ( { children, backgroundColor, resourcesType } ) => {
                             </Col>
                             <Row>
                                 <Col>
-                                    <Button onClick={(e) => toggleModalVisibility()} 
+                                    <Button onClick={() => {toggleModalVisibility(); addItem(itemName, itemValue, itemStatus)}} 
                                             buttonType='primary' 
                                             resourcesType={modalResourceType}>
                                                 Aceitar
@@ -73,7 +72,6 @@ const Modal = ( { children, backgroundColor, resourcesType } ) => {
                                     </Button>
                                 </Col>
                             </Row>
-                        </form>
                     </Card>
                 </StyledCard>
             </Container>

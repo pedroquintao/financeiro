@@ -39,11 +39,17 @@ const Table = ({ resourcesType }) => {
         <>
             <StyledTable2 resourcesType={resourcesType} 
                          colorHandler={colorHandler}>
-                <Button onClick={() => toggleModalVisibility(resourcesType)}
-                        buttonType="primary"
-                        resourcesType={resourcesType}>
-                            Adicionar
-                </Button>
+                <thead>
+                    <tr>
+                        <th>
+                            <Button onClick={() => toggleModalVisibility(resourcesType)}
+                                    buttonType="primary"
+                                    resourcesType={resourcesType}>
+                                        Adicionar
+                            </Button>
+                        </th>
+                    </tr>
+                </thead>
             </StyledTable2>
             <StyledTable resourcesType={resourcesType} 
                          colorHandler={colorHandler}>
