@@ -3,13 +3,17 @@ import { TableContext } from "../../context/TableContext";
 
 export const InputsTest = () => {
 
-    const { seItemName, setItemValue, setItemStatus } = useContext(TableContext)
+    const {itemName, itemValue, itemStatus, seItemName, setItemValue, setItemStatus, inputNameError, inputValueError } = useContext(TableContext)
     
     return (
         <>
-            <input  placeholder="Name" 
-                    onChange={e => {seItemName(e.target.value)}} 
-                    />
+            <input
+                    type="text"
+                    placeholder="Name"
+                    value={itemName}
+                    onChange={(e) => seItemName(e.target.value)}
+                />
+                {inputNameError && <span style={{ color: 'red' }}>{inputNameError}</span>}
             <input  placeholder="Value" 
                     type="number"
                     onChange={e => {setItemValue(e.target.value)}} 

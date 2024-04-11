@@ -9,24 +9,25 @@ export const TableContextProvider = ({ children }) => {
     const [itemName, seItemName] = useState()
     const [itemValue, setItemValue] = useState()
     const [itemStatus, setItemStatus] = useState()
+    const [inputNameError, seinputNameError] = useState()
+    const [inputValueError, setinputValueError] = useState()
 
     const addItem = (name, value, status, tableType) => {
 
-        
-        if(!name || !value) {
-            const emptyInput = !name && !value ? 'name e value' : !name ? 'name' : !value ? 'value' : '';
-            window.alert(`Preencher o(os) campo(s): ${emptyInput}`);
-            return
+        if (!name) {
+            seinputNameError('Por favor, preencha o campo "Name"');
+        }
+        if (!value) {
+            setinputValueError('Por favor, preencha o campo "Value"');
         }
 
-        if(!tableType) {
-            console.error('O tipo de tabela não foi especificado');
-            return
+        // Se algum campo estiver vazio, não adiciona o item
+        if (!name || !value) {
+            return false;
         }
-
         if(tableType !== 'revenue' || tableType !== 'expense') {
             console.error('Tipo de tabela inválido: ', tableType);
-            return
+            return false
         }
 
         const newItem = { name, value, status }
@@ -36,27 +37,20 @@ export const TableContextProvider = ({ children }) => {
         const color = tableType === 'revenue' ? 'green' : '#b44d4d'
 
         console.log(`A linha ${name}, ${value}, ${status} foi adicionada à tabela: %c${tableType.toUpperCase()}`, `color: ${color}`)
+
+        return true
     }
 
-    const toggleTableVisibility = (tableType) => { if(!tableType){
+    const toggleTableVisibility = (tableType) => { 
+        
+        if(!tableType){
+            console.log('Entrada para tipo de recurso está errada!', tableType);
+            return
+        }
 
-        console.log('Entrada para tipo de recurso está errada!', tableType);
+        setTableVisibility(prevState => ({...prevState, [`${tableType}TableVisibility`]: !prevState[`${tableType}TableVisibility`]}));
         return
     }
-        // if(tableType === 'revenue') {
-                                                        setTableVisibility(prevState => ({...prevState, [`${tableType}TableVisibility`]: !prevState[`${tableType}TableVisibility`]}));
-                                                        return
-                                                  }
-                                                //   if(tableType === 'expense') {
-                                                //         setTableVisibility(prevState => ({...prevState, expenseTableVisibility: !tableVisibility.expenseTableVisibility}));
-                                                //         return
-                                                //   }
-                                                //   else {
-                                                //   }
-                                                
-                                                    
-
-    
 
     useEffect(() => console.log('tableVisibility: ', tableVisibility), [tableVisibility])
 
@@ -74,6 +68,8 @@ export const TableContextProvider = ({ children }) => {
                 setItemValue,
                 setItemStatus,
                 addItem,
+                inputNameError,
+                inputValueError
             }
 
     return (

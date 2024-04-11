@@ -58,7 +58,7 @@ const Modal = ( { children, backgroundColor } ) => {
                             </Col>
                             <Row>
                                 <Col>
-                                    <Button onClick={() => {toggleModalVisibility(); addItem(itemName, itemValue, itemStatus, modalResourceType)}} 
+                                    <Button onClick={() => {if(addItem(itemName, itemValue, itemStatus, modalResourceType)){toggleModalVisibility()}}} 
                                             buttonType='primary' 
                                             resourcesType={modalResourceType}>
                                                 Aceitar
