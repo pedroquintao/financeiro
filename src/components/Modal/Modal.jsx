@@ -36,7 +36,7 @@ const StyledCloseButton = styled.div`
     }
 `
 
-const Modal = ( { children, backgroundColor, resourcesType } ) => {
+const Modal = ( { children, backgroundColor } ) => {
 
     const { modalResourceType, toggleModalVisibility } = useContext(ModalContext)
     const { itemName, itemValue, itemStatus, addItem } = useContext(TableContext)
@@ -58,7 +58,7 @@ const Modal = ( { children, backgroundColor, resourcesType } ) => {
                             </Col>
                             <Row>
                                 <Col>
-                                    <Button onClick={() => {toggleModalVisibility(); addItem(itemName, itemValue, itemStatus)}} 
+                                    <Button onClick={() => {toggleModalVisibility(); addItem(itemName, itemValue, itemStatus, modalResourceType)}} 
                                             buttonType='primary' 
                                             resourcesType={modalResourceType}>
                                                 Aceitar

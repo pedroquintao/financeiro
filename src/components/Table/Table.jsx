@@ -31,7 +31,7 @@ const StyledTd = styled.td`
 `
 const Table = ({ resourcesType }) => {
 
-    const { table } = useContext(TableContext)
+    const { tables } = useContext(TableContext)
     const { colorHandler } = useContext(ColorHandlerContext)
     const { toggleModalVisibility } = useContext(ModalContext)
 
@@ -62,7 +62,7 @@ const Table = ({ resourcesType }) => {
                     </StyledTr>
                 </thead>
                 <tbody> 
-                    {table.map((row, index) => (
+                    {tables[`${resourcesType}Table`].map((row, index) => (
                         <tr key={index}>
                             <StyledTd resourcesType={resourcesType} 
                                       colorHandler={colorHandler}>

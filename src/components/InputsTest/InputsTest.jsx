@@ -3,7 +3,7 @@ import { TableContext } from "../../context/TableContext";
 
 export const InputsTest = () => {
 
-    const { itemName, itemValue, itemStatus, seItemName, setItemValue, setItemStatus, addItem } = useContext(TableContext)
+    const { seItemName, setItemValue, setItemStatus } = useContext(TableContext)
     
     return (
         <>
