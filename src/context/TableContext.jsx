@@ -9,22 +9,25 @@ export const TableContextProvider = ({ children }) => {
     const [itemName, seItemName] = useState()
     const [itemValue, setItemValue] = useState()
     const [itemStatus, setItemStatus] = useState()
-    const [inputNameError, seinputNameError] = useState()
-    const [inputValueError, setinputValueError] = useState()
+    const [inputNameError, setInputNameError] = useState('')
+    const [inputValueError, setInputValueError] = useState('')
 
     const addItem = (name, value, status, tableType) => {
 
+        setInputNameError('')
+        setInputValueError('')
+
         if (!name) {
-            seinputNameError('Por favor, preencha o campo "Name"');
+            setInputNameError('Por favor, preencha o campo "Name"');
         }
         if (!value) {
-            setinputValueError('Por favor, preencha o campo "Value"');
+            setInputValueError('Por favor, preencha o campo "Value"');
         }
 
-        // Se algum campo estiver vazio, não adiciona o item
         if (!name || !value) {
             return false;
         }
+        
         if(tableType !== 'revenue' || tableType !== 'expense') {
             console.error('Tipo de tabela inválido: ', tableType);
             return false
