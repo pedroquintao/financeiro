@@ -6,9 +6,9 @@ export const TableContextProvider = ({ children }) => {
     
     const [tables, setTables] = useState({revenueTable: [], expenseTable: []})
     const [tableVisibility, setTableVisibility] = useState({revenueTableVisibility: false, expenseTableVisibility: false})
-    const [itemName, seItemName] = useState()
-    const [itemValue, setItemValue] = useState()
-    const [itemStatus, setItemStatus] = useState()
+    const [itemName, seItemName] = useState('')
+    const [itemValue, setItemValue] = useState('')
+    const [itemStatus, setItemStatus] = useState('')
     const [inputNameError, setInputNameError] = useState('')
     const [inputValueError, setInputValueError] = useState('')
 
@@ -28,7 +28,7 @@ export const TableContextProvider = ({ children }) => {
             return false;
         }
         
-        if(tableType !== 'revenue' || tableType !== 'expense') {
+        if(tableType !== 'revenue' && tableType !== 'expense') {
             console.error('Tipo de tabela inválido: ', tableType);
             return false
         }

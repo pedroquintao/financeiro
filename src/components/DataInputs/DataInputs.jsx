@@ -8,7 +8,7 @@ export const InputsTest = () => {
     
     return (
 
-        <Container style={{backgroundColor: 'green', padding: '40px', margin: '40px'}}>
+        <Container style={{padding: '40px', margin: '40px'}}>
             <Col>
                 <Row>
                     <input  type="text"
