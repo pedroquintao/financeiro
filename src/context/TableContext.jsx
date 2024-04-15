@@ -12,10 +12,15 @@ export const TableContextProvider = ({ children }) => {
     const [inputNameError, setInputNameError] = useState('')
     const [inputValueError, setInputValueError] = useState('')
 
-    const addItem = (name, value, status, tableType) => {
+    const clearFormData = () => {
+        seItemName('');
+        setItemValue('');
+        setItemStatus('');
+        setInputNameError('');
+        setInputValueError('');
+    }
 
-        setInputNameError('')
-        setInputValueError('')
+    const addItem = (name, value, status, tableType) => {
 
         if (!name) {
             setInputNameError('Por favor, preencha o campo "Name"');
@@ -70,9 +75,10 @@ export const TableContextProvider = ({ children }) => {
                 seItemName,
                 setItemValue,
                 setItemStatus,
+                clearFormData,
                 addItem,
                 inputNameError,
-                inputValueError
+                inputValueError,
             }
 
     return (
