@@ -22,6 +22,9 @@ export const TableContextProvider = ({ children }) => {
 
     const addItem = (name, value, status, tableType) => {
 
+        setInputNameError('');
+        setInputValueError('');
+
         if (!name) {
             setInputNameError('Por favor, preencha o campo "Name"');
         }
