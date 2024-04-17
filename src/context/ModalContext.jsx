@@ -5,21 +5,14 @@ export const ModalContext = createContext(null);
 
 export const ModalContextProvider = ( { children } ) => {
 
-    const { seItemName, setItemValue, setItemStatus } = useContext(TableContext) 
+    const { clearFormData } = useContext(TableContext) 
 
     const [modalVisibility, setModalVisibility] = useState()
     const [modalResourceType, setModalResourceType] = useState('')
 
     const toggleModalVisibility = (resourceTypeHandler) => {
         setModalVisibility(!modalVisibility);
-        resourceTypeHandler? 
-        setModalResourceType(resourceTypeHandler) : clearFormData()}
-    
-    const clearFormData = () => {
-        setModalResourceType('');
-        seItemName('');
-        setItemValue('');
-        setItemStatus('');
+        resourceTypeHandler ? setModalResourceType(resourceTypeHandler) : (() => {clearFormData(); setModalResourceType('')})()
     }
     
     const context = { modalVisibility, setModalVisibility, toggleModalVisibility, modalResourceType }

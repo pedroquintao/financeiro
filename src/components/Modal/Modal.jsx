@@ -44,37 +44,34 @@ const Modal = ( { children, backgroundColor } ) => {
 
     return (
         <>
-            <Container className="container">
-                <StyledCard className="estilo">
-                    <Card className='card' backgroundColor={backgroundColor}>
-                            <Row style={{position: "absolute", top: '1rem', right: '1rem'}} align="center" justify="end"
-                                    >
-                                <StyledCloseButton onClick={() => toggleModalVisibility()}>&times;</StyledCloseButton>
-                            </Row>
-                            <Col style={{margin: '4em'}} lg={12} md={12} sm={12} className="coluna">
-                                <Row>
-                                    { children }
-                                </Row>
-                            </Col>
-                            <Row>
-                                <Col>
-                                    <Button onClick={() => {toggleModalVisibility(); addItem(itemName, itemValue, itemStatus, modalResourceType)}} 
-                                            buttonType='primary' 
-                                            resourcesType={modalResourceType}>
-                                                Aceitar
-                                    </Button>
-                                </Col>
-                                <Col align='right'>
-                                    <Button onClick={e =>{ e.preventDefault(); toggleModalVisibility()} } 
-                                            buttonType='secondary' 
-                                            resourcesType={modalResourceType}>
-                                                Cancelar
-                                    </Button>
-                                </Col>
-                            </Row>
-                    </Card>
-                </StyledCard>
-            </Container>
+            <StyledCard>
+                <Card backgroundColor={backgroundColor}>
+                    <Row className="BOTAO FECHA">
+                        <StyledCloseButton style={{position: "absolute", top: '1rem', right: '1rem'}} onClick={() => toggleModalVisibility()}>&times;</StyledCloseButton>
+                    </Row>
+                    <Row className="AREA DO INPUT">
+                        { children }
+                    </Row>
+                    <Row className="BOTOES">
+                        <Col>
+                            <Button onClick={() => {if(addItem(itemName, itemValue, itemStatus, modalResourceType)){
+                                                            toggleModalVisibility()
+                                                        }}} 
+                                    buttonType='primary' 
+                                    resourcesType={modalResourceType}>
+                                        Aceitar
+                            </Button>
+                        </Col>
+                        <Col align='right'>
+                            <Button onClick={() => toggleModalVisibility() } 
+                                    buttonType='secondary' 
+                                    resourcesType={modalResourceType}>
+                                        Cancelar
+                            </Button>
+                        </Col>
+                    </Row>
+                </Card>
+            </StyledCard>
             <StyledBackground onClick={() => toggleModalVisibility()} />
         </>
     )

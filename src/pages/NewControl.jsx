@@ -4,17 +4,16 @@ import Table from "../components/Table/Table"
 import ResumeCard from "../components/ResumeCard/ResumeCard"
 import { Date } from "../components/Date/Date"
 import { Balance } from "../components/Balance/Balance"
-import { InputsTest } from "../components/InputsTest/InputsTest"
+import { InputsTest } from "../components/DataInputs/DataInputs"
 import { TableContext } from "../context/TableContext"
 import { useContext } from "react"
 import Modal from "../components/Modal/Modal"
 import { ModalContext } from "../context/ModalContext"
-import { Button } from "../components/Button/Button"
 
 const NewControl = () => {
 
-    const { tableVisibility, toggleTableVisibility} = useContext(TableContext)
-    const { modalVisibility, setModalVisibility, toggleModalVisibility } = useContext(ModalContext)
+    const { tableVisibility} = useContext(TableContext)
+    const { modalVisibility } = useContext(ModalContext)
 
     return (
     <Container>
