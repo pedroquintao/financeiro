@@ -1,7 +1,4 @@
 git fetch origin
-git checkout no-void-inputs
-
-git fetch origin
 git checkout work-with-dates
 
 git fetch origin
