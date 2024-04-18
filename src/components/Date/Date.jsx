@@ -9,7 +9,7 @@ const Date = () => {
   const [years, setYears] = useState([selectedYear])
   const [selectedDate, setSelectedDate] = useState('');
 
-  const Dates = {years: `${years.map((year) => {return year})}:`}
+  // const Dates = {years: `${years.map((year) => {return year})}:`}
 
     const months = [
       'Janeiro', 'Fevereiro', 'Março', 'Abril',
@@ -88,7 +88,7 @@ const Date = () => {
                       </select>
                 </Col>
               </Row>
-              <button onClick={() => console.table('Dates: ', Dates)}>TESTE</button>
+              {/* <button onClick={() => console.table('Dates: ', Dates)}>TESTE</button> */}
             </Container>)
 }
 
