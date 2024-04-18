@@ -3,13 +3,10 @@ import { Container, Row, Col } from "react-grid-system";
 
 const Date = () => {
 
-  
   const [selectedMonth, setSelectedMonth] = useState('');
   const [selectedYear, setSelectedYear] = useState('2022');
   const [years, setYears] = useState([selectedYear])
   const [selectedDate, setSelectedDate] = useState('');
-
-  // const Dates = {years: `${years.map((year) => {return year})}:`}
 
     const months = [
       'Janeiro', 'Fevereiro', 'Março', 'Abril',
@@ -18,28 +15,26 @@ const Date = () => {
     ];
 
 
-    const executaTeste = (direction) => {
+    const updateSelectedYear = (direction) => {
 
             switch(direction) {
 
               case 'right':
-                const yearPlusOne = parseInt(selectedYear) + 1
-                const yearPlusOneString = yearPlusOne.toString()
-                setSelectedYear(yearPlusOneString)
+                const nextYear = (parseInt(selectedYear) + 1).toString()
+                setSelectedYear(nextYear)
 
-                if(!years.find((element) => element === yearPlusOneString)){
-                  setYears(prevState => [...prevState, yearPlusOneString])
+                if(!years.includes(nextYear)){
+                  setYears(prevState => [...prevState, nextYear])
                 }
 
                 break
 
               case 'left':
-                const yearMinusOne = parseInt(selectedYear) - 1
-                const yearMinusOneString = yearMinusOne.toString()
-                setSelectedYear(yearMinusOneString)
+                const previousYear = (parseInt(selectedYear) - 1).toString()
+                setSelectedYear(previousYear)
 
-                if(!years.find((element) => element === yearMinusOneString)){
-                  setYears(prevState => [yearMinusOneString, ...prevState ])
+                if(!years.includes(previousYear)){
+                  setYears(prevState => [previousYear, ...prevState ])
                 }
 
                 break
@@ -65,7 +60,7 @@ const Date = () => {
     return (<Container> 
               <Row justify="center" align="center">
                 <Col justify="center" align="center">
-                      <button onClick={() => executaTeste('left')}>{'<'}</button>
+                      <button onClick={() => updateSelectedYear('left')}>{'<'}</button>
                       <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
                         {years.map((year, index) => (
                           <option key={index} value={year}>
@@ -73,7 +68,7 @@ const Date = () => {
                           </option>
                         ))}
                       </select>
-                      <button onClick={() => executaTeste('right')}>{'>'}</button>
+                      <button onClick={() => updateSelectedYear('right')}>{'>'}</button>
                 </Col>
               </Row>
               <Row>
