@@ -5,7 +5,14 @@ export const TableContext = createContext(null);
 
 export const TableContextProvider = ({ children }) => {
     
-    const { years } = useContext(DateContext)
+    const { years, 
+            months, 
+            selectedYear, 
+            selectedMonth, 
+            updateYearHandler, 
+            updateMonthHandler, 
+            setSelectedYear, 
+            setSelectedMonth  } = useContext(DateContext)
 
     const [tables, setTables] = useState({ revenueTable: [], expenseTable: [] })
     const [tableVisibility, setTableVisibility] = useState({revenueTableVisibility: false, expenseTableVisibility: false})
