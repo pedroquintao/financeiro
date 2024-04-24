@@ -5,18 +5,21 @@ import { router } from './router/router'
 import { TableContextProvider } from './context/TableContext'
 import { ModalContextProvider } from './context/ModalContext'
 import { ColorHandlerContextProvider } from './context/ColorHandlerContext'
+import { DateContextProvider } from './context/DateContext'
 
 function App() {
 
   return (
     <Theme>
       <ColorHandlerContextProvider>
-        <TableContextProvider>
-          <ModalContextProvider>
-            <GlobalStyles />
-            <RouterProvider router={router} />
-          </ModalContextProvider>
-        </TableContextProvider>
+        <DateContextProvider>
+          <TableContextProvider>
+            <ModalContextProvider>
+              <GlobalStyles />
+              <RouterProvider router={router} />
+            </ModalContextProvider>
+          </TableContextProvider>
+        </DateContextProvider>
       </ColorHandlerContextProvider>
     </Theme>
   )

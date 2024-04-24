@@ -1,10 +1,13 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
+import { DateContext } from './DateContext';
 
 export const TableContext = createContext(null);
 
 export const TableContextProvider = ({ children }) => {
     
-    const [tables, setTables] = useState({revenueTable: [], expenseTable: []})
+    const { years } = useContext(DateContext)
+
+    const [tables, setTables] = useState({ revenueTable: [], expenseTable: [] })
     const [tableVisibility, setTableVisibility] = useState({revenueTableVisibility: false, expenseTableVisibility: false})
     const [itemName, seItemName] = useState('')
     const [itemValue, setItemValue] = useState('')
@@ -63,7 +66,7 @@ export const TableContextProvider = ({ children }) => {
         return
     }
 
-    useEffect(() => console.log('tableVisibility: ', tableVisibility), [tableVisibility])
+    // useEffect(() => console.log('tableVisibility: ', tableVisibility), [tableVisibility])
 
 
     const context = {

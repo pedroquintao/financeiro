@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { ModalContext } from "../../context/ModalContext";
 import { Button } from "../Button/Button";
 import { TableContext } from "../../context/TableContext";
+import { DateContext } from "../../context/DateContext";
 
 const StyledBackground = styled.div`
     position: fixed;
@@ -40,6 +41,7 @@ const Modal = ( { children, backgroundColor } ) => {
 
     const { modalResourceType, toggleModalVisibility } = useContext(ModalContext)
     const { itemName, itemValue, itemStatus, addItem } = useContext(TableContext)
+    const { createStringTest } = useContext(DateContext)
 
 
     return (
@@ -55,7 +57,7 @@ const Modal = ( { children, backgroundColor } ) => {
                     <Row className="BOTOES">
                         <Col>
                             <Button onClick={() => {if(addItem(itemName, itemValue, itemStatus, modalResourceType)){
-                                                            toggleModalVisibility()
+                                                            toggleModalVisibility(); createStringTest()
                                                         }}} 
                                     buttonType='primary' 
                                     resourcesType={modalResourceType}>
