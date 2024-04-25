@@ -10,9 +10,27 @@ export const TableContextProvider = ({ children }) => {
             months, 
             selectedYear, 
             selectedMonth, } = useContext(DateContext)
-    const { modalResourceType } = useContext(ModalContext)
+    const { modalResourceType, modalVisibility } = useContext(ModalContext)
 
-    const [tables, setTables] = useState({ revenueTable: [], expenseTable: [] })
+    const initialTables = {
+        2024: {
+            Abril: {
+                        revenueTable: [{
+                                name: 1,
+                                value: 1,
+                                status: ''
+                        }],
+                        expenseTable: [{
+                                    name: 1,
+                                    value: 1,
+                                    status: ''
+                            }]
+            }
+        }
+    }
+
+
+    const [tables, setTables] = useState(initialTables)
     const [tableVisibility, setTableVisibility] = useState({revenueTableVisibility: false, expenseTableVisibility: false})
     const [itemName, seItemName] = useState('')
     const [itemValue, setItemValue] = useState('')
@@ -70,19 +88,19 @@ export const TableContextProvider = ({ children }) => {
 //                             value: 1,
 //                             status: ''
 //                     },
-//                 revenueTable: {
+//                 revenueTable: {[
 //                                 name: 1,
 //                                 value: 1,
-//                                 status: ''
+//                                 status: '']
 //                         }
 
 
+//             }
 //         }
 //     }
 // }
 
-
-        setTables(prevState => ({...prevState, [`${selectedYear}`]: { [`${selectedMonth}`]: {[`${tableType}Table`]: [...prevState[`${tableType}Table`], newItem]}}}))
+        setTables(prevState => ({...prevState, [`${selectedYear}`]: { [`${selectedMonth}`]: {...prevState[`${selectedYear}`][`${selectedMonth}`], [`${tableType}Table`]: [...prevState[`${selectedYear}`][`${selectedMonth}`][`${tableType}Table`], newItem]}}}))
 
         const color = tableType === 'revenue' ? 'green' : '#b44d4d'
 
@@ -93,7 +111,7 @@ export const TableContextProvider = ({ children }) => {
 
     const toggleTableVisibility = (tableType) => { 
         
-        if(!tableType){
+        if(tableType !== 'revenue' && tableType !== 'expense'){
             console.log('Entrada para tipo de recurso está errada!', tableType);
             return
         }
@@ -101,7 +119,7 @@ export const TableContextProvider = ({ children }) => {
         setTableVisibility(prevState => ({...prevState, [`${tableType}TableVisibility`]: !prevState[`${tableType}TableVisibility`]}));
         return
     }
-
+    useEffect(() => {clearFormData(); console.log('ESTADO DO MODAL: ', modalVisibility)}, [modalVisibility])
     useEffect(() => console.log('tables: ', tables), [tables])
 
 

@@ -13,12 +13,12 @@ function App() {
     <Theme>
       <ColorHandlerContextProvider>
         <DateContextProvider>
-          <TableContextProvider>
-            <ModalContextProvider>
+          <ModalContextProvider>
+            <TableContextProvider>
               <GlobalStyles />
               <RouterProvider router={router} />
-            </ModalContextProvider>
-          </TableContextProvider>
+            </TableContextProvider>
+          </ModalContextProvider>
         </DateContextProvider>
       </ColorHandlerContextProvider>
     </Theme>
