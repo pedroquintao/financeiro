@@ -4,6 +4,7 @@ import { TableContext } from "../../context/TableContext";
 import { Button } from "../Button/Button";
 import { ColorHandlerContext } from "../../context/ColorHandlerContext";
 import { ModalContext } from "../../context/ModalContext";
+import { DateContext } from "../../context/DateContext";
 
 
 
@@ -34,6 +35,7 @@ const Table = ({ resourcesType }) => {
     const { tables } = useContext(TableContext)
     const { colorHandler } = useContext(ColorHandlerContext)
     const { toggleModalVisibility } = useContext(ModalContext)
+    const { selectedYear, selectedMonth } = useContext(DateContext)
 
     return (
         <>
@@ -62,7 +64,7 @@ const Table = ({ resourcesType }) => {
                     </StyledTr>
                 </thead>
                 <tbody> 
-                    {tables[`${resourcesType}Table`].map((row, index) => (
+                    {tables[`${selectedYear}`][`${selectedMonth}`][`${resourcesType}Table`].map((row, index) => (
                         <tr key={index}>
                             <StyledTd resourcesType={resourcesType} 
                                       colorHandler={colorHandler}>

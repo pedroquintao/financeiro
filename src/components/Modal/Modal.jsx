@@ -41,7 +41,7 @@ const Modal = ( { children, backgroundColor } ) => {
 
     const { modalResourceType, toggleModalVisibility } = useContext(ModalContext)
     const { itemName, itemValue, itemStatus, addItem } = useContext(TableContext)
-    const { createStringTest } = useContext(DateContext)
+    // const { createStringTest } = useContext(DateContext)
 
 
     return (
@@ -56,8 +56,8 @@ const Modal = ( { children, backgroundColor } ) => {
                     </Row>
                     <Row className="BOTOES">
                         <Col>
-                            <Button onClick={() => {if(addItem(itemName, itemValue, itemStatus, modalResourceType)){
-                                                            toggleModalVisibility(); createStringTest()
+                            <Button onClick={() => {if(addItem(modalResourceType)){
+                                                            toggleModalVisibility();
                                                         }}} 
                                     buttonType='primary' 
                                     resourcesType={modalResourceType}>

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { DateContext } from './DateContext';
+import { ModalContext } from './ModalContext';
 
 export const TableContext = createContext(null);
 
@@ -8,11 +9,8 @@ export const TableContextProvider = ({ children }) => {
     const { years, 
             months, 
             selectedYear, 
-            selectedMonth, 
-            updateYearHandler, 
-            updateMonthHandler, 
-            setSelectedYear, 
-            setSelectedMonth  } = useContext(DateContext)
+            selectedMonth, } = useContext(DateContext)
+    const { modalResourceType } = useContext(ModalContext)
 
     const [tables, setTables] = useState({ revenueTable: [], expenseTable: [] })
     const [tableVisibility, setTableVisibility] = useState({revenueTableVisibility: false, expenseTableVisibility: false})
@@ -30,19 +28,19 @@ export const TableContextProvider = ({ children }) => {
         setInputValueError('');
     }
 
-    const addItem = (name, value, status, tableType) => {
+    const addItem = (tableType) => {
 
         setInputNameError('');
         setInputValueError('');
 
-        if (!name) {
+        if (!itemName) {
             setInputNameError('Por favor, preencha o campo "Name"');
         }
-        if (!value) {
+        if (!itemValue) {
             setInputValueError('Por favor, preencha o campo "Value"');
         }
 
-        if (!name || !value) {
+        if (!itemName || !itemValue) {
             return false;
         }
         
@@ -51,13 +49,44 @@ export const TableContextProvider = ({ children }) => {
             return false
         }
 
-        const newItem = { name, value, status }
+        const newItem = { name: itemName, value: itemValue, status: itemStatus }
 
-        setTables(prevState => ({...prevState, [`${tableType}Table`]: [...prevState[`${tableType}Table`], newItem]}))
+        //Atual
+        // {
+        //     revenueTable: {
+        //          name: 1,
+        //          value: 1,
+        //          status: ''
+        //     }
+        // }
+
+// Final:
+// {
+//     2024: {
+//         Abril: {
+//             {
+//                     revenueTable: {
+//                             name: 1,
+//                             value: 1,
+//                             status: ''
+//                     },
+//                 revenueTable: {
+//                                 name: 1,
+//                                 value: 1,
+//                                 status: ''
+//                         }
+
+
+//         }
+//     }
+// }
+
+
+        setTables(prevState => ({...prevState, [`${selectedYear}`]: { [`${selectedMonth}`]: {[`${tableType}Table`]: [...prevState[`${tableType}Table`], newItem]}}}))
 
         const color = tableType === 'revenue' ? 'green' : '#b44d4d'
 
-        console.log(`A linha ${name}, ${value}, ${status} foi adicionada à tabela: %c${tableType.toUpperCase()}`, `color: ${color}`)
+        console.log(`A linha ${JSON.stringify(newItem)} foi adicionada à tabela: %c${tableType.toUpperCase()}`, `color: ${color}`)
 
         return true
     }
@@ -73,7 +102,7 @@ export const TableContextProvider = ({ children }) => {
         return
     }
 
-    // useEffect(() => console.log('tableVisibility: ', tableVisibility), [tableVisibility])
+    useEffect(() => console.log('tables: ', tables), [tables])
 
 
     const context = {

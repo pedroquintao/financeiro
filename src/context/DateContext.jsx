@@ -44,17 +44,6 @@ export const DateContextProvider = ({ children }) => {
     const updateMonthHandler = (event) => {
         setSelectedMonth(event.target.value);
       };
-    // const [year, setYear] = useState('2024');
-    // const [month, setMonth] = useState('Abril')
-    // const [tablesArray, setTablesArray] = useState('')
-    // const [stringTest, setStringTest] = useState('')
-
-    // const addTables = () => {
-        //     setTablesArray((prevState => ({
-            //         ...prevState,
-            //         [`${year}`]: '2200'
-            //     })))
-            // }
     
     // const createStringTest = () => {
     //     setStringTest(JSON.parse(`{"${year}": {"${month}": {"name": "${itemName}", "value": ${itemValue}, "status": "${itemStatus}"}}}`))
