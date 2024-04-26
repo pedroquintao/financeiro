@@ -6,11 +6,9 @@ export const TableContext = createContext(null);
 
 export const TableContextProvider = ({ children }) => {
     
-    const { years, 
-            months, 
-            selectedYear, 
+    const { selectedYear, 
             selectedMonth, } = useContext(DateContext)
-    const { modalResourceType, modalVisibility } = useContext(ModalContext)
+    const { modalVisibility } = useContext(ModalContext)
 
     const initialTables = {
         2024: {
@@ -46,20 +44,32 @@ export const TableContextProvider = ({ children }) => {
         setInputValueError('');
     }
 
-    const addItem = (tableType) => {
-
+    const validateInputs = () => {
+        
         setInputNameError('');
         setInputValueError('');
 
         if (!itemName) {
             setInputNameError('Por favor, preencha o campo "Name"');
         }
+
         if (!itemValue) {
             setInputValueError('Por favor, preencha o campo "Value"');
         }
 
         if (!itemName || !itemValue) {
             return false;
+        }
+
+        else {
+            return true
+        }
+    }
+
+    const addItem = (tableType) => {
+
+        if(!validateInputs()) {
+            return false
         }
         
         if(tableType !== 'revenue' && tableType !== 'expense') {
@@ -69,38 +79,23 @@ export const TableContextProvider = ({ children }) => {
 
         const newItem = { name: itemName, value: itemValue, status: itemStatus }
 
-        //Atual
-        // {
-        //     revenueTable: {
-        //          name: 1,
-        //          value: 1,
-        //          status: ''
-        //     }
-        // }
+        setTables( prevState => {
 
-// Final:
-// {
-//     2024: {
-//         Abril: {
-//             {
-//                     revenueTable: {
-//                             name: 1,
-//                             value: 1,
-//                             status: ''
-//                     },
-//                 revenueTable: {[
-//                                 name: 1,
-//                                 value: 1,
-//                                 status: '']
-//                         }
+            const updatedTables = { ...prevState };
+            console.log('UPDATED TABLES: ', updatedTables);
+            const updatedYear = updatedTables[`${selectedYear}`];
+            const updatedMonth = updatedYear[`${selectedMonth}`];
+            console.log('UPDATED YEAR: ', updatedYear);
+            console.log('UPDATED MONTH: ', updatedMonth);
+            console.log('\n\n\n\n');
+            // debugger
+            updatedMonth[`${tableType}Table`] = [...updatedMonth[`${tableType}Table`], newItem];
+            console.log('UPDATED TABLES: ', updatedTables);
+            // debugger
+            return updatedTables;
+        })
 
-
-//             }
-//         }
-//     }
-// }
-
-        setTables(prevState => ({...prevState, [`${selectedYear}`]: { [`${selectedMonth}`]: {...prevState[`${selectedYear}`][`${selectedMonth}`], [`${tableType}Table`]: [...prevState[`${selectedYear}`][`${selectedMonth}`][`${tableType}Table`], newItem]}}}))
+        // setTables(prevState => ({...prevState, [`${selectedYear}`]: { [`${selectedMonth}`]: {...prevState[`${selectedYear}`][`${selectedMonth}`], [`${tableType}Table`]: [...prevState[`${selectedYear}`][`${selectedMonth}`][`${tableType}Table`], newItem]}}}))
 
         const color = tableType === 'revenue' ? 'green' : '#b44d4d'
 
