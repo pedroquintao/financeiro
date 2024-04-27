@@ -6,6 +6,7 @@ import { TableContextProvider } from './context/TableContext'
 import { ModalContextProvider } from './context/ModalContext'
 import { ColorHandlerContextProvider } from './context/ColorHandlerContext'
 import { DateContextProvider } from './context/DateContext'
+import { TableDataContextProvider } from './context/TableDataContext'
 
 function App() {
 
@@ -16,7 +17,9 @@ function App() {
           <ModalContextProvider>
             <TableContextProvider>
               <GlobalStyles />
-              <RouterProvider router={router} />
+              <TableDataContextProvider>
+                <RouterProvider router={router} />
+              </TableDataContextProvider>
             </TableContextProvider>
           </ModalContextProvider>
         </DateContextProvider>

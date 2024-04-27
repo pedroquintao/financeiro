@@ -7,7 +7,9 @@ export const TableContext = createContext(null);
 export const TableContextProvider = ({ children }) => {
     
     const { selectedYear, 
-            selectedMonth, } = useContext(DateContext)
+            selectedMonth,
+            years,
+            months } = useContext(DateContext)
     const { modalVisibility } = useContext(ModalContext)
 
     const initialTables = {
@@ -25,6 +27,20 @@ export const TableContextProvider = ({ children }) => {
                             }]
             }
         }
+        // years: [{2024: {
+        //     Abril: {
+        //                 revenueTable: [{
+        //                         name: 1,
+        //                         value: 1,
+        //                         status: ''
+        //                 }],
+        //                 expenseTable: [{
+        //                             name: 1,
+        //                             value: 1,
+        //                             status: ''
+        //                     }]
+        //     }
+        // }}]
     }
 
 
@@ -77,29 +93,21 @@ export const TableContextProvider = ({ children }) => {
             return false
         }
 
-        const newItem = { name: itemName, value: itemValue, status: itemStatus }
-
+        
         setTables( prevState => {
-
+            
             const updatedTables = { ...prevState };
-            console.log('UPDATED TABLES: ', updatedTables);
             const updatedYear = updatedTables[`${selectedYear}`];
             const updatedMonth = updatedYear[`${selectedMonth}`];
-            console.log('UPDATED YEAR: ', updatedYear);
-            console.log('UPDATED MONTH: ', updatedMonth);
-            console.log('\n\n\n\n');
-            // debugger
+            const newItem = { name: itemName, value: itemValue, status: itemStatus };
+
             updatedMonth[`${tableType}Table`] = [...updatedMonth[`${tableType}Table`], newItem];
-            console.log('UPDATED TABLES: ', updatedTables);
-            // debugger
+
+            console.log(`A linha ${JSON.stringify(newItem)} foi adicionada à tabela: %c${tableType.toUpperCase()}`, `color: ${tableType === 'revenue' ? 'green' : '#b44d4d'}`);
+
             return updatedTables;
         })
 
-        // setTables(prevState => ({...prevState, [`${selectedYear}`]: { [`${selectedMonth}`]: {...prevState[`${selectedYear}`][`${selectedMonth}`], [`${tableType}Table`]: [...prevState[`${selectedYear}`][`${selectedMonth}`][`${tableType}Table`], newItem]}}}))
-
-        const color = tableType === 'revenue' ? 'green' : '#b44d4d'
-
-        console.log(`A linha ${JSON.stringify(newItem)} foi adicionada à tabela: %c${tableType.toUpperCase()}`, `color: ${color}`)
 
         return true
     }
@@ -114,7 +122,10 @@ export const TableContextProvider = ({ children }) => {
         setTableVisibility(prevState => ({...prevState, [`${tableType}TableVisibility`]: !prevState[`${tableType}TableVisibility`]}));
         return
     }
-    useEffect(() => {clearFormData(); console.log('ESTADO DO MODAL: ', modalVisibility)}, [modalVisibility])
+    useEffect(() => {clearFormData(); console.log('ESTADO DO MODAL: ', modalVisibility)}, [modalVisibility]);
+    // useEffect(() => {setTables(prevState => ({...prevState, years.map}))}, [selectedYear]);
+    // useEffect(() => {}, [selectedMonth])
+
     useEffect(() => console.log('tables: ', tables), [tables])
 
 
