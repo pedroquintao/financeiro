@@ -1,12 +1,9 @@
 import styled from "@emotion/styled";
 import { useContext } from "react";
-import { TableContext } from "../../context/TableContext";
+import { TablesDataBaseContext } from "../../context/TablesDataBaseContext";
 import { Button } from "../Button/Button";
 import { ColorHandlerContext } from "../../context/ColorHandlerContext";
 import { ModalContext } from "../../context/ModalContext";
-import { DateContext } from "../../context/DateContext";
-
-
 
 const StyledTable = styled.table`
     background-color: ${props => props.colorHandler('background')};
@@ -32,10 +29,11 @@ const StyledTd = styled.td`
 `
 const Table = ({ resourcesType }) => {
 
-    const { tables } = useContext(TableContext)
+    const { filterTable, calculateTotals } = useContext(TablesDataBaseContext)
     const { colorHandler } = useContext(ColorHandlerContext)
     const { toggleModalVisibility } = useContext(ModalContext)
-    const { selectedYear, selectedMonth } = useContext(DateContext)
+
+    const currentTable = filterTable(resourcesType)
 
     return (
         <>
@@ -64,7 +62,7 @@ const Table = ({ resourcesType }) => {
                     </StyledTr>
                 </thead>
                 <tbody> 
-                    {tables[`${selectedYear}`][`${selectedMonth}`][`${resourcesType}Table`].map((row, index) => (
+                    {currentTable.map((row, index) => (
                         <tr key={index}>
                             <StyledTd resourcesType={resourcesType} 
                                       colorHandler={colorHandler}>
@@ -93,7 +91,7 @@ const Table = ({ resourcesType }) => {
                     <StyledTd resourcesType={resourcesType} 
                               colorHandler={colorHandler}>
                             <h3>
-                                4000
+                                {calculateTotals(currentTable)}
                             </h3>
                         </StyledTd>
                     </StyledTr>

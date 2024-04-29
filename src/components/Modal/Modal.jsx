@@ -4,7 +4,7 @@ import { Row, Col } from "react-grid-system";
 import { useContext } from "react";
 import { ModalContext } from "../../context/ModalContext";
 import { Button } from "../Button/Button";
-import { TableContext } from "../../context/TableContext";
+import { TablesDataBaseContext } from "../../context/TablesDataBaseContext";
 
 
 const StyledBackground = styled.div`
@@ -40,7 +40,7 @@ const StyledCloseButton = styled.div`
 const Modal = ( { children, backgroundColor } ) => {
 
     const { modalResourceType, toggleModalVisibility } = useContext(ModalContext)
-    const { addItem } = useContext(TableContext)
+    const { addItem } = useContext(TablesDataBaseContext)
     // const { createStringTest } = useContext(DateContext)
 
 

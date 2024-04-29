@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { TableContext } from "../../context/TableContext";
+import { TablesDataBaseContext } from "../../context/TablesDataBaseContext";
 import { Container, Row, Col } from "react-grid-system";
 import styled from "@emotion/styled";
 import { ColorHandlerContext } from "../../context/ColorHandlerContext";
@@ -23,7 +23,7 @@ const StyledInput = styled.input`
 
 export const InputsTest = () => {
 
-    const {itemName, itemValue, itemStatus, seItemName, setItemValue, setItemStatus, inputNameError, inputValueError } = useContext(TableContext)
+    const {itemName, itemValue, itemStatus, seItemName, setItemValue, setItemStatus, inputNameError, inputValueError } = useContext(TablesDataBaseContext)
     const {colorHandler} = useContext(ColorHandlerContext)
     const { modalResourceType } = useContext(ModalContext)
 

@@ -5,14 +5,14 @@ import ResumeCard from "../components/ResumeCard/ResumeCard"
 import Date from "../components/DateSelectors/DateSelectors"
 import { Balance } from "../components/Balance/Balance"
 import { InputsTest } from "../components/DataInputs/DataInputs"
-import { TableContext } from "../context/TableContext"
+import { TablesDataBaseContext } from "../context/TablesDataBaseContext"
 import { useContext } from "react"
 import Modal from "../components/Modal/Modal"
 import { ModalContext } from "../context/ModalContext"
 
 const NewControl = () => {
 
-    const { tableVisibility} = useContext(TableContext)
+    const { tableVisibility} = useContext(TablesDataBaseContext)
     const { modalVisibility } = useContext(ModalContext)
 
     return (

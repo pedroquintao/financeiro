@@ -44,18 +44,6 @@ export const DateContextProvider = ({ children }) => {
     const updateMonthHandler = (event) => {
         setSelectedMonth(event.target.value);
       };
-    
-    // const createStringTest = () => {
-    //     setStringTest(JSON.parse(`{"${year}": {"${month}": {"name": "${itemName}", "value": ${itemValue}, "status": "${itemStatus}"}}}`))
-    // }
-    useEffect(() => {
-        const selectedYearIndex = years.indexOf(selectedYear)
-        console.log('________________________________________\n\n')
-        console.log('O ano atual é: ', selectedYear)
-        console.log('Array de Anos: ', years)
-        console.log('O indice do ano atual é', selectedYearIndex)
-        console.log('________________________________________\n\n')
-  }, [selectedYear, years])
 
     const context = { years, 
                       months, 
