@@ -11,8 +11,6 @@ export const ModalContextProvider = ( { children } ) => {
         resourceType ? setModalResourceType(resourceType) : (() => {setModalResourceType('')})()
     }
     
-    
-
     const context = { modalVisibility, setModalVisibility, toggleModalVisibility, modalResourceType }
 
     return (

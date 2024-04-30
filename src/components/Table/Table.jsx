@@ -91,7 +91,7 @@ const Table = ({ resourcesType }) => {
                     <StyledTd resourcesType={resourcesType} 
                               colorHandler={colorHandler}>
                             <h3>
-                                {calculateTotals(currentTable)}
+                                R$ {calculateTotals(currentTable)}
                             </h3>
                         </StyledTd>
                     </StyledTr>

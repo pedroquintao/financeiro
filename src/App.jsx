@@ -16,7 +16,7 @@ function App() {
           <ModalContextProvider>
             <TablesDataBaseContextProvider>
               <GlobalStyles />
-                <RouterProvider router={router} />
+              <RouterProvider router={router} />
             </TablesDataBaseContextProvider>
           </ModalContextProvider>
         </DateContextProvider>

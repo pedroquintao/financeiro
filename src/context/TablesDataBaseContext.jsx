@@ -94,12 +94,10 @@ export const TablesDataBaseContextProvider = ({ children }) => {
     }                                                                                             
     
     const calculateTotals = (currentTable) => {
-        let sum = 0;
-        currentTable.map(row => sum += parseFloat(row.value))
-        const totalText = `R$ ${sum}`
-        return totalText
+        const filtredValues = currentTable.map(element => [...element.value])
+        const sumResult = filtredValues.reduce((acc, cur) => { return parseFloat(acc) + parseFloat(cur)}, 0)
+        return sumResult.toFixed(2)
     }
-
     const context = {
                 tablesDataBase,
                 tableVisibility,
