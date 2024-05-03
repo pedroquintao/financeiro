@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { DateContext } from './DateContext';
-import { ModalContext } from './ModalContext';
 
 export const TablesDataBaseContext = createContext(null);
 
@@ -15,7 +14,7 @@ export const TablesDataBaseContextProvider = ({ children }) => {
     const [itemStatus, setItemStatus] = useState('')
     const [inputNameError, setInputNameError] = useState('')
     const [inputValueError, setInputValueError] = useState('')
-
+    const [selectedRows, setSelectedRows] = useState([])
     
     const clearFormData = () => {
         seItemName('');
@@ -71,6 +70,7 @@ export const TablesDataBaseContextProvider = ({ children }) => {
 
             return [...prevState, newData];
         })
+
         clearFormData();
         return true
     }
@@ -98,6 +98,11 @@ export const TablesDataBaseContextProvider = ({ children }) => {
         const sumResult = filtredValues.reduce((acc, cur) => { return parseFloat(acc) + parseFloat(cur)}, 0)
         return sumResult.toFixed(2)
     }
+    const toggleCheckBox = (id) => {
+        setTablesDataBase(tablesDataBase[id].status = !tablesDataBase[id].status)
+    }
+
+    useEffect(() => {console.table(tablesDataBase)}, [tablesDataBase])
     const context = {
                 tablesDataBase,
                 tableVisibility,
@@ -106,6 +111,7 @@ export const TablesDataBaseContextProvider = ({ children }) => {
                 itemStatus,
                 inputNameError,
                 inputValueError,
+                selectedRows,
                 setTablesDataBase,
                 setTableVisibility,
                 seItemName,
@@ -117,7 +123,9 @@ export const TablesDataBaseContextProvider = ({ children }) => {
                 addItem,
                 toggleTableVisibility,
                 calculateTotals,
-                filterTable
+                filterTable,
+                setSelectedRows,
+                toggleCheckBox
             }
 
     return (

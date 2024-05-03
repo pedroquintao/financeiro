@@ -72,15 +72,15 @@ export const InputsTest = () => {
             </Row>
                 </Col>
             </Row>
-            <Row>
+            {/* <Row>
                 <Col>
                     <input  type="checkbox"
                                 placeholder="Status" 
                                 value={itemStatus}
-                                onChange={e => {setItemStatus(e.target.value)}} 
+                                onChange={e => {setItemStatus(e.target.value); console.log('Estado: ', e.target)}} 
                     />
                 </Col>
-            </Row>
+            </Row> */}
         </Container>
 
     )
