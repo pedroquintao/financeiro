@@ -96,6 +96,13 @@ export const TablesDataBaseContextProvider = ({ children }) => {
         })
     }
 
+    const filterTable = () => {
+        const filtredDatabase = {
+            revenue: tablesDataBase.revenue.filter(item => item.year === selectedYear && item.month === selectedMonth),
+            expense: tablesDataBase.expense.filter(item => item.year === selectedYear && item.month === selectedMonth)
+        };
+        return filtredDatabase;
+    }
     useEffect(() => {console.clear(); console.table(tablesDataBase)}, [tablesDataBase])
     useEffect(() => {console.log('Status: ', itemStatus)}, [itemStatus])
     const context = {
@@ -118,7 +125,7 @@ export const TablesDataBaseContextProvider = ({ children }) => {
                 addItem,
                 toggleTableVisibility,
                 calculateTotals,
-                // filterTable,
+                filterTable,
                 setSelectedRows,
                 toggleCheckBox
             }

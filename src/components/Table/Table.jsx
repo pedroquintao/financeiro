@@ -29,11 +29,11 @@ const StyledTd = styled.td`
 `
 const Table = ({ resourcesType }) => {
 
-    const { tablesDataBase, calculateTotals, toggleCheckBox, itemStatus, setItemStatus } = useContext(TablesDataBaseContext)
+    const { tablesDataBase, calculateTotals, toggleCheckBox, filterTable } = useContext(TablesDataBaseContext)
     const { colorHandler } = useContext(ColorHandlerContext)
     const { toggleModalVisibility } = useContext(ModalContext)
 
-    const currentTable = tablesDataBase[resourcesType]
+    const currentTable = filterTable()[resourcesType]
 
     return (
         <>

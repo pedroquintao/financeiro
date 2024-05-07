@@ -1,3 +1,6 @@
+No commit do dia 06/05/24, fiz uma refatoraçao para trabalhar com os dados de cada tipo de tabela de forma separada. Porém, quando altero as datas, nao está sendo alterada as tabelas daquele periodo especifico. Verificar o que está acontecendo, e corrigir.
+
+
 git fetch origin
 git checkout work-with-dates
 
