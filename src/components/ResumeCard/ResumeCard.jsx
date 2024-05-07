@@ -30,10 +30,8 @@ const StyledTitle = styled.div`
 
 const ResumeCard = ({ resourcesType }) => {
 
-    const { tableVisibility, toggleTableVisibility, calculateTotals, filterTable } = useContext(TablesDataBaseContext)
+    const { tableVisibility, toggleTableVisibility } = useContext(TablesDataBaseContext)
     const { colorHandler } = useContext(ColorHandlerContext)
-
-    const currentTable = filterTable(resourcesType)
 
     return (
         <>
@@ -61,7 +59,7 @@ const ResumeCard = ({ resourcesType }) => {
 
                 <div>
                     <h3>
-                        { calculateTotals(currentTable)}
+                        Totals
                     </h3> 
                     <p>
                         { resourcesType === 'revenue' ? '500,00' 

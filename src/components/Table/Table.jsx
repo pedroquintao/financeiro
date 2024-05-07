@@ -29,11 +29,11 @@ const StyledTd = styled.td`
 `
 const Table = ({ resourcesType }) => {
 
-    const { filterTable, calculateTotals, toggleCheckBox } = useContext(TablesDataBaseContext)
+    const { tablesDataBase, calculateTotals, toggleCheckBox, itemStatus, setItemStatus } = useContext(TablesDataBaseContext)
     const { colorHandler } = useContext(ColorHandlerContext)
     const { toggleModalVisibility } = useContext(ModalContext)
 
-    const currentTable = filterTable(resourcesType)
+    const currentTable = tablesDataBase[resourcesType]
 
     return (
         <>
@@ -75,8 +75,10 @@ const Table = ({ resourcesType }) => {
                             <StyledTd resourcesType={resourcesType} 
                                       colorHandler={colorHandler}>
                                 <input type="checkbox"
-                                       onChange={(e) => {
-                                        toggleCheckBox(index)}}></input>
+                                       onChange={() => {
+                                        toggleCheckBox(index, resourcesType)}}
+                                        // value={itemStatus}
+                                        ></input>
                             </StyledTd>
                         </tr>
                     ))}

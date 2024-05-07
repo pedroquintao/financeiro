@@ -7,11 +7,11 @@ export const TablesDataBaseContextProvider = ({ children }) => {
     
     const { selectedYear, selectedMonth} = useContext(DateContext)
 
-    const [tablesDataBase, setTablesDataBase] = useState([])
+    const [tablesDataBase, setTablesDataBase] = useState({revenue: [], expense: []})
     const [tableVisibility, setTableVisibility] = useState({revenueTableVisibility: false, expenseTableVisibility: false})
     const [itemName, seItemName] = useState('')
     const [itemValue, setItemValue] = useState('')
-    const [itemStatus, setItemStatus] = useState('')
+    const [itemStatus, setItemStatus] = useState(false)
     const [inputNameError, setInputNameError] = useState('')
     const [inputValueError, setInputValueError] = useState('')
     const [selectedRows, setSelectedRows] = useState([])
@@ -57,29 +57,19 @@ export const TablesDataBaseContextProvider = ({ children }) => {
             return false
         }
 
-        setTablesDataBase( prevState => {
-            
-            const newData = {
-                year: selectedYear,
-                month: selectedMonth,
-                tableType: tableType,
-                name: itemName,
-                value: itemValue,
-                status: itemStatus
-                }
+        const newData = {
+            year: selectedYear,
+            month: selectedMonth,
+            tableType: tableType,
+            name: itemName,
+            value: itemValue,
+            status: false
+            }
 
-            return [...prevState, newData];
-        })
+        setTablesDataBase( prevState => ({...prevState, [tableType]: [...(prevState[tableType] || []),  newData]}))
 
         clearFormData();
         return true
-    }
-
-    const filterTable = (tableType) => {
-        const filtredTable = tablesDataBase.filter(element => (element.year === selectedYear 
-                                                               && element.month === selectedMonth 
-                                                               && element.tableType === tableType))                                             
-        return filtredTable
     }
 
     const toggleTableVisibility = (tableType) => { 
@@ -98,11 +88,16 @@ export const TablesDataBaseContextProvider = ({ children }) => {
         const sumResult = filtredValues.reduce((acc, cur) => { return parseFloat(acc) + parseFloat(cur)}, 0)
         return sumResult.toFixed(2)
     }
-    const toggleCheckBox = (id) => {
-        setTablesDataBase(tablesDataBase[id].status = !tablesDataBase[id].status)
+    const toggleCheckBox = (id, tableType) => {
+        setTablesDataBase(prevState => {
+            const newTableDataBase = {...prevState};
+            newTableDataBase[tableType][id].status = !prevState[tableType][id].status
+            return newTableDataBase
+        })
     }
 
-    useEffect(() => {console.table(tablesDataBase)}, [tablesDataBase])
+    useEffect(() => {console.clear(); console.table(tablesDataBase)}, [tablesDataBase])
+    useEffect(() => {console.log('Status: ', itemStatus)}, [itemStatus])
     const context = {
                 tablesDataBase,
                 tableVisibility,
@@ -123,7 +118,7 @@ export const TablesDataBaseContextProvider = ({ children }) => {
                 addItem,
                 toggleTableVisibility,
                 calculateTotals,
-                filterTable,
+                // filterTable,
                 setSelectedRows,
                 toggleCheckBox
             }
