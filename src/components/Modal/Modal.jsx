@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import { Card } from "../Card/Card";
-import { Row, Col, Container } from "react-grid-system";
+import { Row, Col } from "react-grid-system";
 import { useContext } from "react";
 import { ModalContext } from "../../context/ModalContext";
 import { Button } from "../Button/Button";
-import { TableContext } from "../../context/TableContext";
+import { TablesDataBaseContext } from "../../context/TablesDataBaseContext";
+
 
 const StyledBackground = styled.div`
     position: fixed;
@@ -39,7 +40,8 @@ const StyledCloseButton = styled.div`
 const Modal = ( { children, backgroundColor } ) => {
 
     const { modalResourceType, toggleModalVisibility } = useContext(ModalContext)
-    const { itemName, itemValue, itemStatus, addItem } = useContext(TableContext)
+    const { addItem } = useContext(TablesDataBaseContext)
+    // const { createStringTest } = useContext(DateContext)
 
 
     return (
@@ -54,8 +56,8 @@ const Modal = ( { children, backgroundColor } ) => {
                     </Row>
                     <Row className="BOTOES">
                         <Col>
-                            <Button onClick={() => {if(addItem(itemName, itemValue, itemStatus, modalResourceType)){
-                                                            toggleModalVisibility()
+                            <Button onClick={() => {if(addItem(modalResourceType)){
+                                                            toggleModalVisibility();
                                                         }}} 
                                     buttonType='primary' 
                                     resourcesType={modalResourceType}>

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { useContext } from "react"
-import { TableContext } from "../../context/TableContext"
+import { TablesDataBaseContext } from "../../context/TablesDataBaseContext"
 import { ColorHandlerContext } from "../../context/ColorHandlerContext"
 
 const StyledCard = styled.div`
@@ -30,9 +30,8 @@ const StyledTitle = styled.div`
 
 const ResumeCard = ({ resourcesType }) => {
 
-    const { tableVisibility, toggleTableVisibility } = useContext(TableContext)
+    const { tableVisibility, toggleTableVisibility } = useContext(TablesDataBaseContext)
     const { colorHandler } = useContext(ColorHandlerContext)
-
 
     return (
         <>
@@ -60,9 +59,7 @@ const ResumeCard = ({ resourcesType }) => {
 
                 <div>
                     <h3>
-                        { resourcesType === 'revenue' ? '4000,00' 
-                        : resourcesType === 'expense' ? '2000,00'
-                        : 'ERROR!'}
+                        Totals
                     </h3> 
                     <p>
                         { resourcesType === 'revenue' ? '500,00' 

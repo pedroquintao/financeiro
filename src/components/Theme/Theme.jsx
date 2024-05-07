@@ -8,7 +8,8 @@ const theme = {
         dark: {
             a: '#94A684',
             b: '#AEC3AE',
-            c: '#bdbdbd'
+            c: '#bdbdbd',
+            d: '#5a5545'
         },
         
         neutral: {

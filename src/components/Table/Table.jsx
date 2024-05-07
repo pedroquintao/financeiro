@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
 import { useContext } from "react";
-import { TableContext } from "../../context/TableContext";
+import { TablesDataBaseContext } from "../../context/TablesDataBaseContext";
 import { Button } from "../Button/Button";
 import { ColorHandlerContext } from "../../context/ColorHandlerContext";
 import { ModalContext } from "../../context/ModalContext";
-
-
 
 const StyledTable = styled.table`
     background-color: ${props => props.colorHandler('background')};
@@ -31,9 +29,11 @@ const StyledTd = styled.td`
 `
 const Table = ({ resourcesType }) => {
 
-    const { tables } = useContext(TableContext)
+    const { tablesDataBase, calculateTotals, toggleCheckBox, filterTable } = useContext(TablesDataBaseContext)
     const { colorHandler } = useContext(ColorHandlerContext)
     const { toggleModalVisibility } = useContext(ModalContext)
+
+    const currentTable = filterTable()[resourcesType]
 
     return (
         <>
@@ -62,7 +62,7 @@ const Table = ({ resourcesType }) => {
                     </StyledTr>
                 </thead>
                 <tbody> 
-                    {tables[`${resourcesType}Table`].map((row, index) => (
+                    {currentTable.map((row, index) => (
                         <tr key={index}>
                             <StyledTd resourcesType={resourcesType} 
                                       colorHandler={colorHandler}>
@@ -74,7 +74,11 @@ const Table = ({ resourcesType }) => {
                             </StyledTd>
                             <StyledTd resourcesType={resourcesType} 
                                       colorHandler={colorHandler}>
-                                <input type="checkbox"></input>
+                                <input type="checkbox"
+                                       onChange={() => {
+                                        toggleCheckBox(index, resourcesType)}}
+                                        // value={itemStatus}
+                                        ></input>
                             </StyledTd>
                         </tr>
                     ))}
@@ -91,7 +95,7 @@ const Table = ({ resourcesType }) => {
                     <StyledTd resourcesType={resourcesType} 
                               colorHandler={colorHandler}>
                             <h3>
-                                4000
+                                R$ {calculateTotals(currentTable)}
                             </h3>
                         </StyledTd>
                     </StyledTr>

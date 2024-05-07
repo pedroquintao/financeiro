@@ -1,7 +1,8 @@
 export const Balance = () => {
+
     return (
         <>
-            <h2>1000,00</h2>
+            <h2>Total</h2>
         </>
     )
 }
