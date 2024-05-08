@@ -84,8 +84,8 @@ export const TablesDataBaseContextProvider = ({ children }) => {
     }                                                                                             
     
     const calculateTotals = (currentTable) => {
-        const filtredValues = currentTable.map(element => [...element.value])
-        const sumResult = filtredValues.reduce((acc, cur) => { return parseFloat(acc) + parseFloat(cur)}, 0)
+        const valuesArray = [...currentTable.map(item => item.status === true? item.value : 0)]
+        const sumResult = valuesArray.reduce((acc, cur) => parseFloat(acc) + parseFloat(cur), 0)
         return sumResult.toFixed(2)
     }
     const toggleCheckBox = (id, tableType) => {
@@ -97,11 +97,11 @@ export const TablesDataBaseContextProvider = ({ children }) => {
     }
 
     const filterTable = () => {
-        const filtredDatabase = {
+        const filtredDataBase = {
             revenue: tablesDataBase.revenue.filter(item => item.year === selectedYear && item.month === selectedMonth),
             expense: tablesDataBase.expense.filter(item => item.year === selectedYear && item.month === selectedMonth)
         };
-        return filtredDatabase;
+        return filtredDataBase;
     }
     useEffect(() => {console.clear(); console.table(tablesDataBase)}, [tablesDataBase])
     useEffect(() => {console.log('Status: ', itemStatus)}, [itemStatus])
